@@ -12,7 +12,8 @@
                 :key="`nav-item-${index}`"
                 class="nav-item"
                 v-on:click="scrollTo(item.name)">
-                {{item.label}}
+                <div v-if="item.label === title" class="active">{{item.label}}</div>
+                <div v-if="item.label !== title">{{item.label}}</div>
             </div>
         </div>
     </div>
@@ -121,5 +122,9 @@ export default {
 
 .nav-item:hover {
     background-color: #f0f0f0;
+}
+
+.active {
+    color: #777777;
 }
 </style>
