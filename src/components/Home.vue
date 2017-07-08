@@ -1,24 +1,24 @@
 <template>
     <div id="home">
         <cover class="screen"></cover>
-        <div>
-            <nav-menu :title="'Hello'"></nav-menu>
+        <div id="hello">
+            <nav-menu :title="'Hello'" @click="jump"></nav-menu>
             <hello class="screen"></hello>
         </div>
-        <div>
-            <nav-menu :title="'Skills'"></nav-menu>
+        <div id="skills">
+            <nav-menu :title="'Skills'" @click="jump"></nav-menu>
             <skills class="screen"></skills>
         </div>
-        <div>
-            <nav-menu :title="'Projects'"></nav-menu>
+        <div id="projects">
+            <nav-menu :title="'Projects'" @click="jump"></nav-menu>
             <projects class="screen"></projects>
         </div>
-        <div>
-            <nav-menu :title="'Blog'"></nav-menu>
+        <div id="blog">
+            <nav-menu :title="'Blog'" @click="jump"></nav-menu>
             <blog class="screen"></blog>
         </div>
-        <div class="screen">
-            <nav-menu :title="'Get Connected'"></nav-menu>
+        <div id="contact" class="screen">
+            <nav-menu :title="'Get Connected'" @click="jump"></nav-menu>
             <contact></contact>
         </div>
     </div>
@@ -54,6 +54,14 @@ export default {
                 'contact',
             ],
         };
+    },
+    methods: {
+        jump(section) {
+            this.$scrollTo(`#${section}`, 1000, {
+                easing: 'ease-in-out',
+                cancelable: true,
+            });
+        },
     },
 };
 </script>

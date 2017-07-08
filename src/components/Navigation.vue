@@ -11,7 +11,7 @@
                 v-for="(item, index) in menuItems"
                 :key="`nav-item-${index}`"
                 class="nav-item"
-                v-on:click="scrollTo(item.name)">
+                v-on:click="$emit('click', item.name)">
                 <div v-if="item.label === title" class="active">{{item.label}}</div>
                 <div v-if="item.label !== title">{{item.label}}</div>
             </div>
@@ -88,7 +88,6 @@ export default {
     width: 100%;
     text-align: center;
     transition: 2s ease-in-out;
-    transition-delay: 3s;
 }
 
 .title {
@@ -98,7 +97,6 @@ export default {
     padding: 20px 0px 20px 0px;
     letter-spacing: 3px;
     transition: 2s ease-in-out;
-    transition-delay: 3s;
 }
 
 .nav-wrapper {
@@ -106,7 +104,6 @@ export default {
     left: 65%;
     opacity: 0.0;
     transition: 2s ease-in-out;
-    transition-delay: 3s;
 }
 
 .nav-item {
