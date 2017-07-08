@@ -2,7 +2,7 @@
     <div id="home">
         <cover class="screen"></cover>
         <div>
-            <nav-menu></nav-menu>
+            <nav-menu :title="'Hello'"></nav-menu>
             <hello class="screen"></hello>
         </div>
         <div>

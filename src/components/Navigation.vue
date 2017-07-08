@@ -3,7 +3,7 @@
         <div class="title-wrapper">
             <div class="title">
                 Rachel Frantsen
-                <span v-if="title">| {{title}}</span>
+                <span v-if="title !== 'Hello'">| {{title}}</span>
             </div>
         </div>
         <div class="nav-wrapper">
