@@ -79,6 +79,7 @@ export default {
     transition: .6s ease-in-out;
     left: 0%;
     opacity: 1.0;
+    cursor: crosshair;
 }
 
 .title-wrapper {
@@ -95,7 +96,6 @@ export default {
     font-variant: small-caps;
     padding: 20px 0px 20px 0px;
     letter-spacing: 3px;
-    cursor: crosshair;
     transition: 2s ease-in-out;
     transition-delay: 3s;
 }
