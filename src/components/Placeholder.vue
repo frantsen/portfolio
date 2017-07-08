@@ -14,3 +14,9 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.placeholder {
+    margin: 10px;
+}
+</style>
