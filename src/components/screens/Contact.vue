@@ -1,10 +1,18 @@
 <template>
     <div id="contact">
-        Contact
+        <social></social>
     </div>
 </template>
 
 <script>
+import Social from '../misc/Social';
+
+export default {
+    name: 'contact',
+    components: {
+        Social,
+    },
+};
 </script>
 
 <style scoped>
