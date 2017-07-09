@@ -41,10 +41,10 @@ export default {
                     name: 'projects',
                     label: 'Projects',
                 },
-                {
+                /* {
                     name: 'blog',
                     label: 'Blog',
-                },
+                }, */
                 {
                     name: 'contact',
                     label: 'Get Connected',
@@ -111,7 +111,7 @@ export default {
     letter-spacing: 3px;
     display: inline-block;
     text-align: center;
-    width: 20%;
+    width: 24%;
     padding: 20px 0px 20px 0px;
     font-variant: small-caps;
     display: inline-block;

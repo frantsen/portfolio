@@ -13,10 +13,12 @@
             <nav-menu :title="'Projects'" @click="jump"></nav-menu>
             <projects class="screen"></projects>
         </div>
-        <div id="blog">
+        <!--
+            <div id="blog">
             <nav-menu :title="'Blog'" @click="jump"></nav-menu>
             <blog class="screen"></blog>
-        </div>
+            </div>
+        -->
         <div id="contact" class="screen">
             <nav-menu :title="'Get Connected'" @click="jump"></nav-menu>
             <contact></contact>
