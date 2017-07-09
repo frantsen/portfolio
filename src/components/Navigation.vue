@@ -63,7 +63,8 @@ export default {
 <style scoped>
 #navigation {
     width: 100%;
-    background-color: #fafafa;
+    overflow: hidden;
+    /* background-color: #fafafa; */
 }
 
 #navigation:hover .title-wrapper {
@@ -118,7 +119,7 @@ export default {
 }
 
 .nav-item:hover {
-    background-color: #f0f0f0;
+    background-color: #fafafa; /* #f0f0f0; */
 }
 
 .active {
