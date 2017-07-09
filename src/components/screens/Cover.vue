@@ -1,6 +1,5 @@
 <template>
     <div id="cover">
-        Cover
     </div>
 </template>
 
