@@ -11,9 +11,8 @@
                 v-for="(item, index) in menuItems"
                 :key="`nav-item-${index}`"
                 class="nav-item"
-                v-on:click="$emit('click', item.name)">
-                <div v-if="item.label === title" class="active">{{item.label}}</div>
-                <div v-if="item.label !== title">{{item.label}}</div>
+                @click="$emit('click', item.name)">
+                <div :class="{ active: item.label === title}">{{item.label}}</div>
             </div>
         </div>
     </div>
@@ -41,10 +40,6 @@ export default {
                     name: 'projects',
                     label: 'Projects',
                 },
-                /* {
-                    name: 'blog',
-                    label: 'Blog',
-                }, */
                 {
                     name: 'contact',
                     label: 'Get Connected',
@@ -52,15 +47,12 @@ export default {
             ],
         };
     },
-    methods: {
-        scrollTo(item) {
-            alert(`goto ${item}`);
-        },
-    },
 };
 </script>
 
 <style scoped>
+
+/* TODO: Change horizontal slide to (less intrusive) vertical */
 #navigation {
     width: 100%;
     overflow: hidden;

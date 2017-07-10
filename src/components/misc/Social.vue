@@ -1,30 +1,12 @@
 <template>
     <div id="social">
         <div class="social-container">
-            <a href="https://www.linkedin.com/in/rachelfrantsen/" class="social-link">
-                    <img src="../../assets/linkedin.svg" alt="LinkedIn"></img>
-                    <div class="social-description">
-                        Connect with me on LinkedIn
-                    </div>
-            </a><br>
-            <a href="https://github.com/frantsen" class="social-link">
-                    <img src="../../assets/github.svg" alt="GitHub"></img>
-                    <div class="social-description">
-                        Explore my open source contributions on GitHub
-                    </div>
-            </a><br>
-            <a href="https://twitter.com/rachelfrantsen" class="social-link">
-                <img src="../../assets/twitter.svg" alt="Twitter"></img>
-                <div class="social-description">
-                    Follow me on Twitter
-                </div>
-            </a><br>
-            <a href="mailto:rachelfrantsen@gmail.com" class="social-link">
-                <img src="../../assets/email.svg" alt="Email"></img>
-                <div class="social-description">
-                    Send me a good old-fashioned email
-                </div>
-            </a>
+            <span v-for="(link, index) in links" :key="`social-link-${index}`">
+                <a :href="link.url" class="social-link">
+                    <img :src="fullImgPath(link.label)" :alt="link.label"></img>
+                    <div class="social-description">{{link.description}}</div>
+                </a><br>
+            </span>
         </div>
     </div>
 </template>
@@ -32,6 +14,38 @@
 <script>
 export default {
     name: 'social',
+    data() {
+        return {
+            links: [
+                {
+                    label: 'LinkedIn',
+                    url: 'https://www.linkedin.com/in/rachelfrantsen/',
+                    description: 'Connect with me on LinkedIn',
+                },
+                {
+                    label: 'GitHub',
+                    url: 'https://github.com/frantsen',
+                    description: 'Explore my open source contributions on GitHub',
+                },
+                {
+                    label: 'Twitter',
+                    url: 'https://twitter.com/rachelfrantsen',
+                    description: 'Follow me on Twitter',
+                },
+                {
+                    label: 'Email',
+                    url: 'mailto:rachelfrantsen@gmail.com',
+                    description: 'Send me a good old-fashioned email',
+                },
+            ],
+        };
+    },
+    methods: {
+        fullImgPath(name) {
+            let imagePath = require.context('../../assets', false, /\.svg$/);
+            return imagePath('./' + name.toLowerCase() + '.svg');
+        },
+    },
 };
 </script>
 

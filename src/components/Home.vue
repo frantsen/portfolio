@@ -1,27 +1,18 @@
 <template>
     <div id="home">
         <cover class="screen"></cover>
-        <div id="hello">
-            <nav-menu :title="'Hello'" @click="jump"></nav-menu>
-            <hello class="screen"></hello>
-        </div>
-        <div id="skills">
-            <nav-menu :title="'Skills'" @click="jump"></nav-menu>
-            <skills class="screen"></skills>
-        </div>
-        <div id="projects">
-            <nav-menu :title="'Projects'" @click="jump"></nav-menu>
-            <projects class="screen"></projects>
-        </div>
-        <!--
-            <div id="blog">
-            <nav-menu :title="'Blog'" @click="jump"></nav-menu>
-            <blog class="screen"></blog>
+        <div v-for="(screen, index) in screens"
+            :key="`screen-index-${index}`"
+            :id="`screen-${screen.name}`">
+            <div :class="{ 'screen': (screen.name === 'contact') }">
+                <div :class="{ 'screen': (screen.name !== 'contact')}">
+                    <nav-menu :title="screen.title" :items="screens" @click="jump"></nav-menu>
+                    <hello v-if="screen.name === 'hello'"></hello>
+                    <skills v-if="screen.name === 'skills'"></skills>
+                    <projects v-if="screen.name === 'projects'"></projects>
+                    <contact v-if="screen.name === 'contact'"></contact>
+                </div>
             </div>
-        -->
-        <div id="contact" class="screen">
-            <nav-menu :title="'Get Connected'" @click="jump"></nav-menu>
-            <contact></contact>
         </div>
     </div>
 </template>
@@ -49,17 +40,28 @@ export default {
     data() {
         return {
             screens: [
-                'hello',
-                'skills',
-                'projects',
-                'blog',
-                'contact',
+                {
+                    name: 'hello',
+                    title: 'Hello',
+                },
+                {
+                    name: 'skills',
+                    title: 'Skills',
+                },
+                {
+                    name: 'projects',
+                    title: 'Projects',
+                },
+                {
+                    name: 'contact',
+                    title: 'Get Connected',
+                },
             ],
         };
     },
     methods: {
         jump(section) {
-            this.$scrollTo(`#${section}`, 1000, {
+            this.$scrollTo(`#screen-${section}`, 1000, {
                 easing: 'ease-in-out',
                 cancelable: true,
             });
