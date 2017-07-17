@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import NavMenu from './Navigation';
 import Cover from './screens/Cover';
 import Hello from './screens/Hello';
 import Skills from './screens/Skills';
@@ -71,13 +70,5 @@ export default {
 </script>
 
 <style scoped>
-.screen {
-    height: 100vh;
-}
 
-#home {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
 </style>

@@ -6,10 +6,24 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+router.beforeEach((to, from, next) => {
+	let siteName = 'Rachel Frantsen';
+	if (to.meta.title === undefined) {
+		document.title = siteName;
+	} else {
+		if (to.name === 'intro') {
+			document.title = siteName + ' | ' + to.meta.title;
+		} else {
+			document.title = to.meta.title + ' | ' + siteName;
+		}
+	}
+	next();
+});
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+	el: '#app',
+	router,
+	template: '<App/>',
+	components: { App }
 });
