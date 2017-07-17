@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-    	<navigation :title="screenTitle"></navigation>
+        <navigation :title="this.$route.meta.title"></navigation>
         <router-view></router-view>
     </div>
 </template>
@@ -12,11 +12,6 @@ export default {
     name: 'app',
     components: {
     	Navigation,
-    },
-    data() {
-    	return {
-    		screenTitle: '',
-    	};
     },
 }
 </script>

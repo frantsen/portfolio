@@ -3,7 +3,7 @@
         <div class="title-wrapper">
             <div class="title">
                 Rachel Frantsen
-                <span v-if="title !== 'Hello'">| {{title}}</span>
+                <span v-if="title">| {{title}}</span>
             </div>
             <!-- <div class="menuIcon">≡</div> -->
         </div>
