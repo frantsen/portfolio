@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <navigation :title="this.$route.meta.title"></navigation>
+        <navigation :screen="this.$route.name" :title="this.$route.meta.title"></navigation>
         <router-view></router-view>
     </div>
 </template>
