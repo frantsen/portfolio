@@ -1,23 +1,32 @@
 <template>
-    <div id="navigation" v-if="screen !== undefined" @mouseleave="collapse">
+    <div id="navigation" v-if="screen !== undefined">
         <div id="menu-wrapper"
-            v-if="active"
-            @mouseover="cancelCollapse">
-            <div v-for="(item, index) in topMenuItems" :key="`top-menu-${index}`">
+            v-show="active"
+            @mouseover="cancelCollapse"
+            @mouseleave="delayCollapse">
+            <div v-for="(item, index) in topMenuItems"
+                :key="`top-menu-${index}`"
+                class="card"
+                :style="{ 'margin-left' : `${cardMargin*index}px`,
+                    'margin-top' : `${2*(cardMargin+menuItemPadding)*index}px`,
+                    'padding' : `${cardMargin}px` }"
+                @click="nextPage(item)">
                 {{item.label}}
             </div>
         </div>
-        <div id="screen-wrapper">
-            <div id="menu-icon" @click="expand">≡</div>
-            <div id="screen-title">
-                Rachel Frantsen
-                <span v-if="screen !== 'home'">| {{title}}</span>
+        <div :class="{ 'card': active }"
+            style="width: 100vw;"
+            :style="{ 'margin-left' : `${cardMargin*topMenuItems.length*active}px`,
+                'margin-top' : `${2*(cardMargin+menuItemPadding)*topMenuItems.length*active}px` }">
+            <div id="screen-wrapper">
+                <div id="menu-icon" @click="expand">≡</div>
+                <div id="screen-title">
+                    Rachel Frantsen
+                    <span v-if="screen !== 'home'">| {{title}}</span>
+                </div>
             </div>
+            <slot>Error</slot>
         </div>
-        <div class="menu">
-        </div>
-        <br>
-        <br>
     </div>
 </template>
 
@@ -31,6 +40,8 @@ export default {
         return {
             active: false,
             wait: {},
+            menuItemPadding: 10,
+            cardMargin: 15,
             menuItems: [
                 {
                     name: 'home',
@@ -73,11 +84,18 @@ export default {
             this.active = true;
         },
         collapse() {
-            this.wait = setTimeout(() => this.active = false, 3000);
+            this.active = false;
+        },
+        delayCollapse() {
+            this.wait = setTimeout(() => this.collapse(), 1000);
         },
         cancelCollapse() {
             clearTimeout(this.wait);
         },
+        nextPage(routeName) {
+            this.collapse();
+            this.$router.push(routeName)
+        }
     },
 };
 </script>
@@ -107,5 +125,12 @@ export default {
 
 #menu-wrapper {
     cursor: crosshair;
+}
+
+.card {
+    position: absolute;
+    border: 1px solid #ddd;
+    width: 100vw;
+    height: 100vh;
 }
 </style>

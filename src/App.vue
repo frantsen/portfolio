@@ -1,7 +1,8 @@
 <template>
     <div id="app">
-        <navigation :screen="this.$route.name" :title="this.$route.meta.title"></navigation>
-        <router-view></router-view>
+        <navigation :screen="this.$route.name" :title="this.$route.meta.title">
+            <router-view></router-view>
+        </navigation>
     </div>
 </template>
 
