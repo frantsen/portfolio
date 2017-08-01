@@ -1,23 +1,26 @@
 <template>
     <div id="navigation" v-if="screen !== undefined">
         <div id="menu-wrapper"
-            v-show="active"
             @mouseover="cancelCollapse"
-            @mouseleave="delayCollapse">
+            @mouseleave="delayCollapse"
+            style="position: absolute"
+            :style="{ 'height' : `${cardMargin+menuItemPadding*topMenuItems.length*active}px`}">
             <div v-for="(item, index) in topMenuItems"
                 :key="`top-menu-${index}`"
                 class="card"
-                :style="{ 'margin-left' : `${cardMargin*index}px`,
-                    'margin-top' : `${2*(cardMargin+menuItemPadding)*index}px`,
-                    'padding' : `${cardMargin}px` }"
+                :style="{ 'margin-left' : `${cardMargin*index*active}px`,
+                    'margin-top' : `${2*(cardMargin+menuItemPadding)*index*active}px`,
+                    'padding' : `${cardMargin}px`,
+                    'opacity' : `${1.0*active}`,
+                    'border' : '1px solid #ddd' }"
                 @click="nextPage(item)">
                 {{item.label}}
             </div>
         </div>
-        <div :class="{ 'card': active }"
-            style="width: 100vw;"
+        <div class="card"
             :style="{ 'margin-left' : `${cardMargin*topMenuItems.length*active}px`,
-                'margin-top' : `${2*(cardMargin+menuItemPadding)*topMenuItems.length*active}px` }">
+                'margin-top' : `${2*(cardMargin+menuItemPadding)*topMenuItems.length*active}px`,
+                'border' : '1px solid #'+((active)?'ddd':'fff') }">
             <div id="screen-wrapper">
                 <div id="menu-icon" @click="expand">≡</div>
                 <div id="screen-title">
@@ -82,12 +85,13 @@ export default {
     methods: {
         expand() {
             this.active = true;
+            this.cancelCollapse();
         },
         collapse() {
             this.active = false;
         },
         delayCollapse() {
-            this.wait = setTimeout(() => this.collapse(), 1000);
+            this.wait = setTimeout(() => this.collapse(), 2000);
         },
         cancelCollapse() {
             clearTimeout(this.wait);
@@ -129,8 +133,8 @@ export default {
 
 .card {
     position: absolute;
-    border: 1px solid #ddd;
     width: 100vw;
     height: 100vh;
+    transition: 1s;
 }
 </style>
