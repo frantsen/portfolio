@@ -25,17 +25,24 @@
                 <div id="menu-icon" @click="expand">≡</div>
                 <div id="screen-title">
                     Rachel Frantsen
-                    <span v-if="screen !== 'home'">| {{title}}</span>
+                    <span v-if="screen !== null && screen !== 'home'">| {{title}}</span>
                 </div>
             </div>
-            <slot>Error</slot>
+            <slot>
+                <error-404></error-404>
+            </slot>
         </div>
     </div>
 </template>
 
 <script>
+import Error404 from './screens/Error404';
+
 export default {
     name: 'navigation',
+    components: {
+        Error404,
+    },
     props: [
         'screen', 'title',
     ],
@@ -72,7 +79,7 @@ export default {
     computed: {
         splitIndex() {
             var i = 0;
-            for (; this.screen !== this.menuItems[i].name; ++i);
+            for (; i < this.menuItems.length && this.screen !== this.menuItems[i].name; ++i);
             return i;
         },
         topMenuItems() {

@@ -18,5 +18,6 @@ export default {
 <style scoped>
 .placeholder {
     margin: 10px;
+    font-family: serif;
 }
 </style>

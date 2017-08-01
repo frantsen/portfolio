@@ -1,8 +1,12 @@
 <template>
     <div id="app">
-        <navigation :screen="this.$route.name" :title="this.$route.meta.title">
+        <navigation
+            v-if="this.$route.name !== 'Placeholder'"
+            :screen="(this.$route === undefined) ? null : this.$route.name"
+            :title="this.$route.meta.title">
             <router-view></router-view>
         </navigation>
+        <router-view v-if="this.$route.name === 'Placeholder'"></router-view>
     </div>
 </template>
 

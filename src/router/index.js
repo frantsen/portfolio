@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Placeholder from '../components/Placeholder';
+import Placeholder from '../components/screens/Placeholder';
 import Cover from '../components/screens/Cover';
 import Intro from '../components/screens/Intro';
 import Skills from '../components/screens/Skills';
@@ -62,11 +62,6 @@ export default new Router({
             meta: {
                 title: 'Connect',
             },
-        },
-        {
-            path: '/nav',
-            name: 'navigation',
-            component: Navigation,
         },
     ],
 });
