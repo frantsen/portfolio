@@ -85,7 +85,6 @@ export default {
 
 .nav-wrapper {
     position: absolute;
-    /* transform: translateX(100%); */
     transform: scaleY(0);
     background-color: rgba(150,150,150,1);
     transition: 2s ease-out;
