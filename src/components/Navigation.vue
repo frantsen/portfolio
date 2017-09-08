@@ -1,18 +1,15 @@
 <template>
     <div id="navigation">
-        <div class="title-wrapper">
-            <div class="title">
-                Rachel Frantsen
-                <span v-if="title !== 'Hello'">| {{title}}</span>
-            </div>
+        <div class="title nav-text">
+            Rachel Frantsen <span v-if="title !== 'Hello'">| {{title}}</span>
         </div>
         <div class="nav-wrapper">
-            <div
-                v-for="(item, index) in menuItems"
+            <div v-for="(item, index) in menuItems"
                 :key="`nav-item-${index}`"
-                class="nav-item"
+                class="nav-item nav-text"
+                :class="{active: item.label === title}"
                 @click="$emit('click', item.name)">
-                <div :class="{ active: item.label === title}">{{item.label}}</div>
+                {{item.label}}
             </div>
         </div>
     </div>
@@ -26,7 +23,6 @@ export default {
     ],
     data() {
         return {
-            active: false,
             menuItems: [
                 {
                     name: 'hello',
@@ -51,67 +47,60 @@ export default {
 </script>
 
 <style scoped>
-
-/* TODO: Change horizontal slide to (less intrusive) vertical */
 #navigation {
     width: 100%;
     overflow: hidden;
-    /* background-color: #fafafa; */
-}
-
-#navigation:hover .title-wrapper {
+    position: relative;
+    height: calc(12pt + 40px);
     cursor: crosshair;
-    transition: .6s ease-in-out;
 }
 
 #navigation:hover .title {
-    left: -65%;
-    transition: .6s ease-in-out;
+    transition: .6s ease-out;
+    transform: scaleY(0);
+    color: #fff;
+    background-color: #fff;
 }
 
 #navigation:hover .nav-wrapper {
-    transition: .6s ease-in-out;
-    left: 0%;
-    opacity: 1.0;
-    cursor: crosshair;
+    transition: .6s ease-out;
+    transform: scaleY(1);
+    background-color: rgba(0,0,0,0);
 }
 
-.title-wrapper {
-    position: absolute;
-    width: 100%;
+.nav-text {
     text-align: center;
-    transition: 2s ease-in-out;
+    font-variant: small-caps;
+    padding: 20px 0;
+    letter-spacing: 3px;
 }
 
 .title {
-    position: relative;
-    left: 0%;
-    font-variant: small-caps;
-    padding: 20px 0px 20px 0px;
-    letter-spacing: 3px;
-    transition: 2s ease-in-out;
+    width: 100%;
+    height: 100%;
+    transition: 2s ease-out;
+    position: absolute;
+    transform-origin: top;
 }
 
 .nav-wrapper {
-    position: relative;
-    left: 65%;
-    opacity: 0.0;
-    transition: 2s ease-in-out;
+    position: absolute;
+    /* transform: translateX(100%); */
+    transform: scaleY(0);
+    background-color: rgba(150,150,150,1);
+    transition: 2s ease-out;
+    width: 100%;
+    transform-origin: bottom;
 }
 
 .nav-item {
-    letter-spacing: 3px;
     display: inline-block;
-    text-align: center;
-    width: 24%;
-    padding: 20px 0px 20px 0px;
-    font-variant: small-caps;
-    display: inline-block;
+    width: calc(100%/4);
     transition: background-color .3s;
 }
 
 .nav-item:hover {
-    background-color: #fafafa; /* #f0f0f0; */
+    background-color: #fafafa;
 }
 
 .active {
