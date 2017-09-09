@@ -1,16 +1,12 @@
 <template>
     <div id="home">
-        <cover class="screen" id="screen-cover"></cover>
-        <div v-for="(screen, index) in screens"
-            :key="`screen-index-${index}`"
-            :id="`screen-${screen.name}`">
-            <div class="screen">
-                <nav-menu :title="screen.title" :items="screens" @click="jumpTo"></nav-menu>
-                <intro v-if="screen.name === 'intro'"></intro>
-                <skills v-if="screen.name === 'skills'"></skills>
-                <projects v-if="screen.name === 'projects'"></projects>
-                <connect v-if="screen.name === 'connect'"></connect>
-            </div>
+        <div v-for="(screen, index) in screens" :key="`screen-index-${index}`" :id="`screen-${screen.name}`" class="screen">
+            <nav-menu v-if="screen.name !== 'cover'" :title="screen.title" :items="screens" @click="jumpTo"></nav-menu>
+            <cover v-if="screen.name === 'cover'"></cover>
+            <intro v-if="screen.name === 'intro'"></intro>
+            <skills v-if="screen.name === 'skills'"></skills>
+            <projects v-if="screen.name === 'projects'"></projects>
+            <connect v-if="screen.name === 'connect'"></connect>
         </div>
     </div>
 </template>
@@ -38,6 +34,10 @@ export default {
     data() {
         return {
             screens: [
+                {
+                    name: 'cover',
+                    title: 'Cover',
+                },
                 {
                     name: 'intro',
                     title: 'Intro',

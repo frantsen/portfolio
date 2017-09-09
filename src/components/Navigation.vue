@@ -1,7 +1,8 @@
 <template>
     <div id="navigation">
         <div class="title nav-text">
-            Rachel Frantsen <span v-if="title !== 'Intro'">| {{title}}</span>
+            Rachel Frantsen
+            <span v-if="title !== 'Intro'">| {{title}}</span>
         </div>
         <div class="nav-wrapper">
             <div v-for="(item, index) in menuItems"
@@ -60,14 +61,14 @@ export default {
 }
 
 #navigation:hover .title {
-    transition: .6s ease-out;
+    transition: .25s ease-out;
     transform: scaleY(0);
-    color: #fff;
-    background-color: #fff;
+    color: rgba(255,255,255,.6);
+    background-color: rgba(255,255,255,.6);
 }
 
 #navigation:hover .nav-wrapper {
-    transition: .6s ease-out;
+    transition: .25s ease-out;
     transform: scaleY(1);
     background-color: rgba(0,0,0,0);
 }
@@ -82,7 +83,7 @@ export default {
 .title {
     width: 100%;
     height: 100%;
-    transition: 2s ease-out;
+    transition: .7s ease-in-out;
     position: absolute;
     transform-origin: top;
 }
@@ -90,8 +91,8 @@ export default {
 .nav-wrapper {
     position: absolute;
     transform: scaleY(0);
-    background-color: rgba(150,150,150,1);
-    transition: 2s ease-out;
+    background-color: rgba(0,0,0,.3);
+    transition: .7s ease-in-out;
     width: 100%;
     transform-origin: bottom;
 }
@@ -103,10 +104,10 @@ export default {
 }
 
 .nav-item:hover {
-    background-color: #fafafa;
+    background-color: rgba(0,0,0,.02);
 }
 
 .active {
-    color: #777777;
+    color: rgba(0,0,0,.53);
 }
 </style>
