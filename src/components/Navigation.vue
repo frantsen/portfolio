@@ -1,7 +1,7 @@
 <template>
     <div id="navigation">
         <div class="title nav-text">
-            Rachel Frantsen <span v-if="title !== 'Hello'">| {{title}}</span>
+            Rachel Frantsen <span v-if="title !== 'Intro'">| {{title}}</span>
         </div>
         <div class="nav-wrapper">
             <div v-for="(item, index) in menuItems"
@@ -25,8 +25,12 @@ export default {
         return {
             menuItems: [
                 {
-                    name: 'hello',
-                    label: 'Hello',
+                    name: 'cover',
+                    label: 'Top',
+                },
+                {
+                    name: 'intro',
+                    label: 'Intro',
                 },
                 {
                     name: 'skills',
@@ -37,8 +41,8 @@ export default {
                     label: 'Projects',
                 },
                 {
-                    name: 'contact',
-                    label: 'Get Connected',
+                    name: 'connect',
+                    label: 'Connect',
                 },
             ],
         };
@@ -94,7 +98,7 @@ export default {
 
 .nav-item {
     display: inline-block;
-    width: calc(100%/4);
+    width: calc(100%/5);
     transition: background-color .3s;
 }
 

@@ -1,17 +1,15 @@
 <template>
     <div id="home">
-        <cover class="screen"></cover>
+        <cover class="screen" id="screen-cover"></cover>
         <div v-for="(screen, index) in screens"
             :key="`screen-index-${index}`"
             :id="`screen-${screen.name}`">
-            <div :class="{ 'screen': (screen.name === 'contact') }">
-                <div :class="{ 'screen': (screen.name !== 'contact')}">
-                    <nav-menu :title="screen.title" :items="screens" @click="jump"></nav-menu>
-                    <hello v-if="screen.name === 'hello'"></hello>
-                    <skills v-if="screen.name === 'skills'"></skills>
-                    <projects v-if="screen.name === 'projects'"></projects>
-                    <contact v-if="screen.name === 'contact'"></contact>
-                </div>
+            <div class="screen">
+                <nav-menu :title="screen.title" :items="screens" @click="jumpTo"></nav-menu>
+                <intro v-if="screen.name === 'intro'"></intro>
+                <skills v-if="screen.name === 'skills'"></skills>
+                <projects v-if="screen.name === 'projects'"></projects>
+                <connect v-if="screen.name === 'connect'"></connect>
             </div>
         </div>
     </div>
@@ -20,29 +18,29 @@
 <script>
 import NavMenu from './Navigation';
 import Cover from './screens/Cover';
-import Hello from './screens/Hello';
+import Intro from './screens/Intro';
 import Skills from './screens/Skills';
 import Projects from './screens/Projects';
 import Blog from './screens/Blog';
-import Contact from './screens/Contact';
+import Connect from './screens/Connect';
 
 export default {
     name: 'home',
     components: {
         Cover,
         NavMenu,
-        Hello,
+        Intro,
         Skills,
         Projects,
         Blog,
-        Contact,
+        Connect,
     },
     data() {
         return {
             screens: [
                 {
-                    name: 'hello',
-                    title: 'Hello',
+                    name: 'intro',
+                    title: 'Intro',
                 },
                 {
                     name: 'skills',
@@ -53,16 +51,16 @@ export default {
                     title: 'Projects',
                 },
                 {
-                    name: 'contact',
-                    title: 'Get Connected',
+                    name: 'connect',
+                    title: 'Connect',
                 },
             ],
         };
     },
     methods: {
-        jump(section) {
+        jumpTo(section) {
             this.$scrollTo(`#screen-${section}`, 1000, {
-                easing: 'ease-in-out',
+                easing: 'ease-out',
                 cancelable: true,
             });
         },
