@@ -1,5 +1,5 @@
 <template>
-    <div id="contact">
+    <div class="connect">
         <social></social>
     </div>
 </template>
@@ -8,7 +8,7 @@
 import Social from '../misc/Social';
 
 export default {
-    name: 'contact',
+    name: 'connect',
     components: {
         Social,
     },

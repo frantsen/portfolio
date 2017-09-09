@@ -2,7 +2,7 @@
     <div id="home">
         <div v-for="(screen, index) in screens" :key="`screen-index-${index}`" :id="`screen-${screen.name}`" class="screen">
             <nav-menu v-if="screen.name !== 'cover'" :title="screen.title" :items="screens" @click="jumpTo"></nav-menu>
-            <cover v-if="screen.name === 'cover'"></cover>
+            <cover v-if="screen.name === 'cover'" @overlayClick="jumpTo('intro')"></cover>
             <intro v-if="screen.name === 'intro'"></intro>
             <skills v-if="screen.name === 'skills'"></skills>
             <projects v-if="screen.name === 'projects'"></projects>
@@ -59,7 +59,7 @@ export default {
     },
     methods: {
         jumpTo(section) {
-            this.$scrollTo(`#screen-${section}`, 1000, {
+            this.$scrollTo(`#screen-${section}`, 600, {
                 easing: 'ease-out',
                 cancelable: true,
             });

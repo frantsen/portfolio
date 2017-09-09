@@ -51,13 +51,13 @@ export default {
 
 <style scoped>
 #social {
-    /* text-align: center; */
+    text-align: center;
 }
 
 .social-container {
     width: 480px;
-    margin: 100px auto;
-    /* display: inline-block; */
+    display: inline-block;
+    margin-top: 150px;
 }
 
 .social-link {

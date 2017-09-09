@@ -7,6 +7,8 @@
         <div class="cover-text">
             Rachel Frantsen
         </div>
+        <div class="clickable-overlay" @click="$emit('overlayClick')">
+        </div>
     </div>
 </template>
 
@@ -17,8 +19,8 @@ export default {
 </script>
 
 <style scoped>
-.class {
-    position: relative;
+.cover {
+    height: 100vh;
 }
 
 .background-tile {
@@ -29,10 +31,14 @@ export default {
     height: 65vh;
 }
 
-.animation-wrapper {
+.animation-wrapper, .clickable-overlay {
     position: absolute;
     height: 100%;
     width: 100%;
+}
+
+.clickable-overlay {
+    cursor: crosshair;
 }
 
 .cover-text {
