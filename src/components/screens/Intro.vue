@@ -1,9 +1,16 @@
 <template>
     <div class="intro">
-        <div class="card">
-            <img :src="fullImgPath('portrait.png')" alt="Portrait"></img>
-            <div class="card-text">
-                Hello
+        <div class="stripe">
+            <div class="stripe-internal">
+                <img :src="fullImgPath('portrait.png')" alt="Portrait">
+                </img><div class="stripe-text">
+                    currently geeking out<br>
+                    about scientific<br>
+                    computing, the<br>
+                    science of computing,<br>
+                    and engineering<br>
+                    as art.
+                </div>
             </div>
         </div>
     </div>
@@ -30,29 +37,37 @@ export default {
     text-align: center;
 }
 
-.card {
+.stripe {
     background-color: slategray;
-    min-height: 30vh;
-    max-height: 50vh;
-    min-width: 50vw;
-    max-width: 100vw;
-    display: inline-block;
-    padding: 5%;
-    margin-top: 12vh;
+    height: 40vh;
+    padding: 5vw 0;
+    margin-top: calc(20vh - 62px);
+    position: relative;
 }
 
-.card img {
-    max-width: 50%;
-    max-height: 50vh;
-    float: left;
-}
-
-.card-text {
-    color: #fff;
+.stripe-internal {
+    min-width: 54vw;
+    height: 100%;
+    position: relative;
     float: right;
-    width: 50%;
+}
+
+.stripe img {
+    max-height: 40vh;
+    max-width: 42.4vw;
+    float: left;
+    display: table-cell;
+}
+
+.stripe-text {
+    color: #fff;
     margin-left: 5%;
     text-align: left;
-    font-size: 26pt;
+    overflow: hidden;
+    font-size: 3.5vmax;
+    height: 45vh;
+    width: 42.4vw;
+    padding: 0 5vw;
+    display: table-cell;
 }
 </style>
