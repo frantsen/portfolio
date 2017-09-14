@@ -43,12 +43,13 @@ export default {
 
 .cover-text {
     position: absolute;
-    width: 100%;
+    width: 65vw;
     padding-top: calc(50vh - 21px * 1.825);
     color: #fff;
     text-align: center;
     font-size: 42pt;
     font-weight: bold;
     letter-spacing: 5px;
+    margin: 0vh 17.5vw;
 }
 </style>

@@ -59,7 +59,7 @@ export default {
     },
     methods: {
         jumpTo(section) {
-            this.$scrollTo(`#screen-${section}`, 600, {
+            this.$scrollTo(`#screen-${section}`, 300, {
                 easing: 'ease-out',
                 cancelable: true,
             });

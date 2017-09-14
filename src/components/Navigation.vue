@@ -100,7 +100,8 @@ export default {
 }
 
 .nav-item:hover {
-    background-color: rgba(255,255,255,.08);
+    /* background-color: rgba(255,255,255,.08); */
+    background-color: rgba(0,0,0,.02);
 }
 
 .active {
