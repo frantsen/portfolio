@@ -64,8 +64,8 @@ export default {
     margin-left: 5%;
     text-align: left;
     overflow: hidden;
-    font-size: 3.5vmax;
-    height: 45vh;
+    font-size: 18pt;
+    max-height: 45vh;
     width: 42.4vw;
     padding: 0 5vw;
     display: table-cell;
