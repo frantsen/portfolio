@@ -96,7 +96,7 @@ export default {
 	flex: 1;
 	text-align: center;
 	transition: .3s;
-	max-width: calc(100% /3);
+	max-width: calc(100% /4);
 	padding: 2em;
 	min-width: 10%;
 	position: relative;
@@ -112,7 +112,7 @@ export default {
 
 	&:hover {
 		transition: .5s;
-		max-width: 60% !important;
+		max-width: 40% !important;
 		flex-grow: 3;
 	}
 }
@@ -123,8 +123,8 @@ export default {
 	max-height: calc(100% /3);
 
 	img {
-		width: 98%;
-		padding: 1%;
+		width: 80%;
+		padding: 10%;
 	}
 }
 
