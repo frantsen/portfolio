@@ -8,6 +8,7 @@ Vue.use(Router);
 Vue.use(VueScrollTo);
 
 export default new Router({
+	mode: 'history',
 	routes: [
 		{
 			name: 'home',
