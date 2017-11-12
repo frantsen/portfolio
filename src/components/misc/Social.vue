@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         fullImgPath(name) {
-            let imagePath = require.context('../../assets', false, /\.svg$/);
+            let imagePath = require.context('../../assets/social', false, /\.svg$/);
             return imagePath('./' + name.toLowerCase() + '.svg');
         },
     },
