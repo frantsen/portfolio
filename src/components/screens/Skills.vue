@@ -153,7 +153,6 @@ export default {
 
 .hash-link {
 	color: dodgerblue;
-	text-decoration: underline;
 	display: inline-block;
 	width: 70px;
 
