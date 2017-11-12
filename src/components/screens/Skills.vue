@@ -1,18 +1,23 @@
 <template>
 	<div class="skills">
-		<div class="job group">
-			<div class="header">Professional</div>
-			<div class="logo" v-for="(item, index) in professional" :key="`pro-tools-logo-${index}`">
-				<img :src="fullImgPath(item.img)" :alt="item.label"></img>
+		<div class="container">
+			<div class="commit-list">
+				<span v-for="(item, index) in commits.slice().reverse()" :key="`commit-hash-${index}`">
+					<div class="commit-wrapper">
+						<div @click="selected=commits.length-1-index" class="hash-link">{{item.hash}}</div>
+						{{timeSince(item.date)}}
+					</div>
+				</span>
+			</div>
+			<div class="diff-display">
+				<div v-for="(line, index) in completeDiff" :key="`src-line-${index}`">
+					<div :class="['diff-line', line.type]">
+						{{line.content}}
+						<div class="message">{{line.message}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="college group">
-			<div class="header">Educational</div>
-			<div class="logo" v-for="(item, index) in educational" :key="`edu-tools-logo-${index}`">
-				<img :src="fullImgPath(item.img)" :alt="item.label"></img>
-			</div>
-		</div>
-		<!-- <div class="personal group"></div> -->
 	</div>
 </template>
 
@@ -20,65 +25,114 @@
 export default {
 	name: 'skills',
 	data: () => ({
-		professional: [
+		selected: 8,
+		commits: [
 			{
-				img: 'braintree',
-				label: 'Braintree Payments',
-			},
-			// {
-			// 	img: 'powershell',
-			// 	label: 'PowerShell',
-			// },
-			{
-				img: 'jest',
-				label: 'Jest unit testing framework',
+				hash: 'e1b6410',
+				diff: [{position: 0, content: 'HTML: Personal site 1.0', del: 0}],
+				message: 'Inspired by my dad\'s site & others',
+				date: new Date(2002, 0),
 			},
 			{
-				img: 'js',
-				label: 'JavaScript',
+				hash: 'c0061d0',
+				diff: [{position: 1, content: 'Python', del: 0}],
+				message: 'Recursion clicks; coding is awesome',
+				date: new Date(2015, 1),
 			},
 			{
-				img: 'mss',
-				label: 'Microsoft SQL Server',
+				hash: 'f523646',
+				diff: [{position: 1, content: 'JS', del: 0},
+					{position: 0, content: 'HTML', del: 1}],
+				message: 'First tech gig!',
+				date: new Date(2015, 5),
 			},
 			{
-				img: 'netcore',
-				label: 'Microsoft .NET Core',
+				hash: '85aaa3f',
+				diff: [{position: 0, content: 'C++', del: 0},
+					{position: 3, content: 'Python', del: 1}],
+				message: 'Software design; TA for Intro',
+				date: new Date(2015, 8),
 			},
 			{
-				img: 'vue',
-				label: 'Vue.js',
-			},
-		],
-		educational: [
-			{
-				img: 'cpp',
-				label: 'C++',
-			},
-			{
-				img: 'android',
-				label: 'Java for Android',
+				hash: 'g3002a0',
+				diff: [{position: 4, content: 'SQL', del: 0},
+					{position: 4, content: 'Scheme', del: 0},
+					{position: 0, content: 'C++ TA', del: 1},
+					{position: 0, content: 'Android', del: 0}],
+				message: 'Recursive AND minimalistic?? Sweet!',
+				date: new Date(2016, 1),
 			},
 			{
-				img: 'bash',
-				label: 'Bash',
+				hash: 'eb9f3c5',
+				diff: [{position: 6, content: 'Microsoft SQL Server', del: 1},
+					{position: 2, content: 'HTML', del: 1},
+					{position: 1, content: 'ASP.NET MVC', del: 0}],
+				message: 'Intern at Proto Labs Inc.',
+				date: new Date(2016, 5),
 			},
 			{
-				img: 'vbox',
-				label: 'VirtualBox',
+				hash: '46c390e',
+				diff: [{position: 2, content: 'Bash', del: 0}],
+				message: 'Adventures in scripting',
+				date: new Date(2016, 8),
 			},
 			{
-				img: 'racket',
-				label: 'Scheme',
-			}
+				hash: '7530344',
+				diff: [{position: 3, content: 'C++ level up', del: 1}],
+				message: 'ALGORITHMS',
+				date: new Date(2017, 1),
+			},
+			{
+				hash: '0f830e9',
+				diff: [{position: 9, content: 'Vue.js', del: 0},
+					{position: 6, content: 'PowerShell', del: 0},
+					{position: 6, content: '.NET Core', del: 0},
+					{position: 6, content: 'Jest', del: 0},
+					{position: 4, content: 'Entity Framework Core', del: 0}],
+				message: 'Proto Labs ECommerce project',
+				date: new Date(2017, 5),
+			},
 		],
 	}),
-    methods: {
-        fullImgPath(name) {
-            let imagePath = require.context('../../assets/tools', false, /\.png$/);
-            return imagePath('./' + name + '.png');
-        },
-    },
+	computed: {
+		completeDiff() {
+			let lines = [];
+			for (let i = 0; i < this.selected + 1; ++i) {
+				let c = this.commits[i];
+				if (lines.length > 0) {
+					lines = lines.filter(l => l.type !== 'deleted');
+				}
+				for (let j = 0; j < c.diff.length; ++j) {
+					let l = c.diff[j];
+					lines.splice(l.position + l.del, 0, ({
+						type: ((i === this.selected) ? 'added' : 'unchanged'),
+						content: l.content,
+						message: c.message,
+					}));
+					if (l.del > 0) {
+						for (let d = l.position + 1 - l.del; d < l.position + 1; ++d) {
+							lines[d].type = 'deleted';
+						}
+					}
+				}
+			}
+			return lines;
+		},
+	},
+	methods: {
+		timeSince(date) {
+			let seconds = Math.floor((new Date() - date) / 1000);
+			let intervals = [{sec: 31536000, type: 'year'},
+				{sec: 2592000, type: 'month'},
+				{sec: 86400, type: 'day'},
+				{sec: 3600, type: 'hour'},
+				{sec: 60, type: 'minute'}];
+			let interval = intervals.find(i => Math.floor(i.sec < seconds));
+			if (!interval) return 'a moment ago';
+			let count = Math.floor(seconds / interval.sec);
+			return `${count} ${interval.type}${count > 1 ? 's' : ''} ago`;
+		},
+	},
 };
 </script>
 
@@ -92,51 +146,61 @@ export default {
 	align-items: center;
 }
 
-.group {
-	flex: 1;
-	text-align: center;
-	transition: .3s;
-	max-width: calc(100% /4);
-	padding: 2em;
-	min-width: 10%;
-	position: relative;
+.container {
+	width: 800px;
+	height: 428px;
+}
 
-	& .header {
-		width: 100;
-		padding-bottom: 2em;
-		font-variant: small-caps;
-		font-size: 2.5vmin;
-		letter-spacing: 3px;
-		color: #fff;
-	}
+.hash-link {
+	color: dodgerblue;
+	text-decoration: underline;
+	display: inline-block;
+	width: 70px;
 
 	&:hover {
-		transition: .5s;
-		max-width: 40% !important;
-		flex-grow: 3;
+		cursor: crosshair;
+		color: blue;
 	}
 }
 
-.logo {
+.commit-list {
+	width: 190px;
 	display: inline-block;
-	max-width: calc(100% /3);
-	max-height: calc(100% /3);
+	padding: 10px;
+	margin-right: 10px;
+	background-color: whitesmoke;
+	height: 100%;
+}
 
-	img {
-		width: 80%;
-		padding: 10%;
+.commit-wrapper {
+	padding: 5px;
+}
+
+.diff-display {
+	float: right;
+	width: 570px;
+}
+
+.unchanged {
+	.message {
+		color: gray;
 	}
 }
 
-.job {
-	background: linear-gradient(90deg, rgba(132, 189, 0, .7), rgba(66, 157, 201, .7));
+.added {
+	color: forestgreen;
+	background-color: #e6ffed;
 }
 
-.personal {
-	background-color: lightslategray;
+.message {
+	float: right;
 }
 
-.college {
-	background-color: rgba(228, 160, 27, .7);
+.deleted {
+	color: #f55;
+}
+
+.diff-line {
+	padding: 5px;
 }
 </style>

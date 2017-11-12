@@ -8,14 +8,14 @@ import GoogleAnalytics from './scripts/google_analytics';
 Vue.config.productionTip = false;
 
 router.afterEach((to, from) => {
-  ga('set', 'page', to.fullPath);
-  ga('send', 'pageview');
+	ga('set', 'page', to.fullPath);
+	ga('send', 'pageview');
 });
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+	el: '#app',
+	router,
+	template: '<App/>',
+	components: { App }
 });

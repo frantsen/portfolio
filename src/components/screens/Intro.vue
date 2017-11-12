@@ -38,11 +38,9 @@
 <script>
 export default {
 	class: 'intro',
-	data() {
-		return {
-			shortDesc: true,
-		};
-	},
+	data: () => ({
+		shortDesc: true,
+	}),
 	methods: {
 		fullImgPath(name) {
 			let imagePath = require.context('../../assets', false, /\.png$/);

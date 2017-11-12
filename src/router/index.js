@@ -8,16 +8,16 @@ Vue.use(Router);
 Vue.use(VueScrollTo);
 
 export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'Placeholder',
-            component: Placeholder,
-        },
-        {
-            path: '/wip',
-            name: 'WIP',
-            component: Home,
-        }
-    ],
+	routes: [
+		{
+			path: '/',
+			name: 'Placeholder',
+			component: Placeholder,
+		},
+		{
+			path: '/wip',
+			name: 'WIP',
+			component: Home,
+		}
+	],
 });
