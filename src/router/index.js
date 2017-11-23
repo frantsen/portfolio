@@ -11,13 +11,37 @@ export default new Router({
 	mode: 'history',
 	routes: [
 		{
-			name: 'home',
+			name: 'cover',
 			path: '/',
 			component: Home,
 		},
 		{
-			path: '/*',
+			name: 'intro',
+			path: '/intro',
+			component: Home,
+			meta: {
+				title: 'Intro',
+			},
+		},
+		{
+			name: 'skills',
+			path: '/skills',
+			component: Home,
+			meta: {
+				title: 'Skills',
+			},
+		},
+		{
+			name: 'connect',
+			path: '/connect',
+			component: Home,
+			meta: {
+				title: 'Connect',
+			},
+		},
+		{
 			name: 'error',
+			path: '*',
 			component: Error404,
 			meta: {
 				title: 'Not Found',
