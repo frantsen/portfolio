@@ -70,9 +70,6 @@ export default {
 			|| agent.match(/iPod/i)
 			|| agent.match(/BlackBerry/i)
 			|| agent.match(/Windows Phone/i)) ? true : false;
-		if (this.mobile) {
-			document.body.addEventListener('touchmove', (event) => this.preventMobileScroll);
-		}
 	},
 	mounted() {
 		if (this.mobile) {
@@ -80,11 +77,6 @@ export default {
 		}
 	},
 	methods: {
-		preventMobileScroll(event) {
-			this.remindNav();
-			event.preventDefault();
-			event.stopPropagation();
-		},
 		navigateTo(screenName, instant = false) {
 			let duration = (this.mobile || instant) ? '0' : 300;
 			this.$scrollTo(`#screen-${screenName}`, {

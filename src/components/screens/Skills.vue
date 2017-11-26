@@ -29,66 +29,73 @@ export default {
 		commits: [
 			{
 				hash: 'e1b6410',
-				diff: [{position: 0, content: 'HTML: Personal site 1.0', del: 0}],
+				diff: [{position: 0, content: 'HTML: Personal site 1.0'}],
 				message: 'Inspired by my dad\'s site & others',
 				date: new Date(2002, 0),
 			},
 			{
 				hash: 'c0061d0',
-				diff: [{position: 1, content: 'Python', del: 0}],
+				diff: [{position: 1, content: 'Python'}],
 				message: 'Recursion clicks; coding is awesome',
 				date: new Date(2015, 1),
 			},
 			{
 				hash: 'f523646',
-				diff: [{position: 1, content: 'JS', del: 0},
-					{position: 0, content: 'HTML', del: 1}],
+				diff: [{position: 0, del: true},
+					{position: 1, content: 'JS'},
+					{position: 0, content: 'HTML'}],
 				message: 'First tech gig!',
 				date: new Date(2015, 5),
 			},
 			{
 				hash: '85aaa3f',
-				diff: [{position: 0, content: 'C++', del: 0},
-					{position: 3, content: 'Python', del: 1}],
+				diff: [{position: 0, content: 'C++'},
+					{position: 3, del: true},
+					{position: 3, content: 'Python'}],
 				message: 'Software design; TA for Intro',
 				date: new Date(2015, 8),
 			},
 			{
 				hash: 'g3002a0',
-				diff: [{position: 4, content: 'SQL', del: 0},
-					{position: 4, content: 'Scheme', del: 0},
-					{position: 0, content: 'C++ TA', del: 1},
-					{position: 0, content: 'Android', del: 0}],
+				diff: [{position: 4, content: 'SQL'},
+					{position: 4, content: 'Scheme'},
+					{position: 0, content: 'Android'},
+					{position: 1, del: true},
+					{position: 1, content: 'C++ TA'}],
 				message: 'Recursive AND minimalistic?? Sweet!',
 				date: new Date(2016, 1),
 			},
 			{
 				hash: 'eb9f3c5',
-				diff: [{position: 6, content: 'Microsoft SQL Server', del: 1},
-					{position: 2, content: 'HTML', del: 1},
-					{position: 1, content: 'ASP.NET MVC', del: 0}],
+				diff: [{position: 6, del: true},
+					{position: 4, content: 'Microsoft SQL Server'},
+					{position: 2, del: true},
+					{position: 2, content: 'HTML'},
+					{position: 1, content: 'ASP.NET MVC'}],
 				message: 'Intern at Proto Labs Inc.',
 				date: new Date(2016, 5),
 			},
 			{
 				hash: '46c390e',
-				diff: [{position: 2, content: 'Bash', del: 0}],
+				diff: [{position: 2, content: 'Bash'}],
 				message: 'Adventures in scripting',
 				date: new Date(2016, 8),
 			},
 			{
 				hash: '7530344',
-				diff: [{position: 3, content: 'C++ level up', del: 1}],
+				diff: [{position: 3, del: true},
+					{position: 3, content: 'C++ level up'}],
 				message: 'ALGORITHMS',
 				date: new Date(2017, 1),
 			},
 			{
 				hash: '0f830e9',
-				diff: [{position: 9, content: 'Vue.js', del: 0},
-					{position: 6, content: 'PowerShell', del: 0},
-					{position: 6, content: '.NET Core', del: 0},
-					{position: 6, content: 'Jest', del: 0},
-					{position: 4, content: 'Entity Framework Core', del: 0}],
+				diff: [{position: 9, content: 'Vue.js'},
+					{position: 7, content: 'PowerShell'},
+					{position: 7, content: '.NET Core'},
+					{position: 5, content: 'Jest'},
+					{position: 4, content: 'Entity Framework Core'},
+					{position: 7, del: true}],
 				message: 'Proto Labs ECommerce project',
 				date: new Date(2017, 5),
 			},
@@ -104,15 +111,15 @@ export default {
 				}
 				for (let j = 0; j < c.diff.length; ++j) {
 					let l = c.diff[j];
-					lines.splice(l.position + l.del, 0, ({
-						type: ((i === this.selected) ? 'added' : 'unchanged'),
-						content: l.content,
-						message: c.message,
-					}));
-					if (l.del > 0) {
-						for (let d = l.position + 1 - l.del; d < l.position + 1; ++d) {
-							lines[d].type = 'deleted';
-						}
+					if (l.del) {
+						lines[l.position].type = 'deleted';
+					} else {
+						let pos = l.position + ((lines[l.position] || {}).type === 'deleted' ? 1 : 0);
+						lines.splice(pos, 0, ({
+							type: ((i === this.selected) ? 'added' : 'unchanged'),
+							content: l.content,
+							message: c.message,
+						}));
 					}
 				}
 			}
