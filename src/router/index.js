@@ -11,34 +11,18 @@ export default new Router({
 	mode: 'history',
 	routes: [
 		{
-			name: 'cover',
+			name: 'home',
 			path: '/',
 			component: Home,
 		},
-		{
-			name: 'intro',
-			path: '/intro',
-			component: Home,
-			meta: {
-				title: 'Intro',
-			},
-		},
-		{
-			name: 'skills',
-			path: '/skills',
-			component: Home,
-			meta: {
-				title: 'Skills',
-			},
-		},
-		{
-			name: 'connect',
-			path: '/connect',
-			component: Home,
-			meta: {
-				title: 'Connect',
-			},
-		},
+		// {
+		// 	name: 'blog',
+		// 	path: '/blog',
+		// 	component: Blog,
+		// 	meta: {
+		// 		title: 'Blog',
+		// 	},
+		// },
 		{
 			name: 'error',
 			path: '*',
@@ -46,6 +30,6 @@ export default new Router({
 			meta: {
 				title: 'Not Found',
 			},
-		}
+		},
 	],
 });

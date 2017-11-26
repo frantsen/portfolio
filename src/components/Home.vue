@@ -59,6 +59,7 @@ export default {
 		mobile: false,
 		arrowOpacity: 1.0,
 		navInProgress: false,
+		currentScreen: 'cover',
 	}),
 	created() {
 		let agent = navigator.userAgent;
@@ -69,31 +70,27 @@ export default {
 			|| agent.match(/iPod/i)
 			|| agent.match(/BlackBerry/i)
 			|| agent.match(/Windows Phone/i)) ? true : false;
-		window.addEventListener('scroll', this.onScroll);
+		if (this.mobile) {
+			document.body.addEventListener('touchmove', (event) => this.preventMobileScroll);
+		}
 	},
 	mounted() {
 		if (this.mobile) {
 			this.remindNav();
 		}
-		this.navigateTo(this.$route.name, true);
-	},
-	destroyed() {
-		window.removeEventListener('scroll', this.onScroll);
 	},
 	methods: {
-		onScroll(event) {
-			let vh = window.innerHeight;
-			let pos = event.path[1].scrollY;
-			let offset = vh * .2;
-			let idx = Math.floor((pos + offset >= vh * this.screens.length ? pos : pos + offset) / vh);
-			let screen = this.screens[idx].name;
-			if (screen !== this.$route.name) {
-				this.$router.push({name: screen});
-			}
+		preventMobileScroll(event) {
+			this.remindNav();
+			event.preventDefault();
+			event.stopPropagation();
 		},
 		navigateTo(screenName, instant = false) {
 			let duration = (this.mobile || instant) ? '0' : 300;
 			this.$scrollTo(`#screen-${screenName}`, {
+				onDone: () => {
+					this.currentScreen = screenName;
+				},
 				duration: duration,
 				easing: 'ease-out',
 				cancelable: true,
@@ -104,7 +101,7 @@ export default {
 				return;
 			}
 			this.navInProgress = true;
-			let nextScreenIdx = this.screens.findIndex(s=>s.name===this.$route.name)+1;
+			let nextScreenIdx = this.screens.findIndex(s=>s.name===this.currentScreen)+1;
 			if (nextScreenIdx >= this.screens.length) {
 				this.navInProgress = false;
 				return;
@@ -117,7 +114,7 @@ export default {
 				return;
 			}
 			this.navInProgress = true;
-			let prevScreenIdx = this.screens.findIndex(s=>s.name===this.$route.name)-1;
+			let prevScreenIdx = this.screens.findIndex(s=>s.name===this.currentScreen)-1;
 			if (prevScreenIdx < 0) {
 				this.navInProgress = false;
 				return;
@@ -127,7 +124,7 @@ export default {
 		},
 		remindNav() {
 			this.arrowOpacity = 1.0;
-			let removeArrows = setTimeout(() => this.arrowOpacity = 0.0, 700);
+			let removeArrows = setTimeout(() => this.arrowOpacity = 0.0, 900);
 		},
 	},
 };
