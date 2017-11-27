@@ -21,14 +21,17 @@ export default {
 <style scoped>
 .cover {
 	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .background-tile {
 	position: absolute;
-	width: 65vw;
-	margin: 17.5vh 17.5vw;
+	width: 65%;
+	height: 65%;
 	background-color: lightslategray;
-	height: 65vh;
 }
 
 .animation-wrapper, .clickable-overlay {
@@ -43,13 +46,11 @@ export default {
 
 .cover-text {
 	position: absolute;
-	width: 61vw;
-	padding: calc(50vh - 21px * 1.825) 2vw;
+	width: 61%;
 	color: #fff;
 	text-align: center;
 	font-size: 7vmin;
 	font-weight: bold;
-	letter-spacing: 5px;
-	margin: 0vh 17.5vw;
+	letter-spacing: .5vw;
 }
 </style>

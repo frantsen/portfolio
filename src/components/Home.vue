@@ -6,7 +6,7 @@
 			<intro v-if="screen.name === 'intro'"></intro>
 			<skills v-if="screen.name === 'skills'"></skills>
 			<projects v-if="screen.name === 'projects'"></projects>
-			<connect v-if="screen.name === 'connect'"></connect>
+			<connect v-if="screen.name === 'connect'" :mobile="mobile"></connect>
 		</div>
 		<transition v-if="mobile" name="fade">
 			<div class="overlay" :style="`opacity: ${arrowOpacity}`">
@@ -70,13 +70,26 @@ export default {
 			|| agent.match(/iPod/i)
 			|| agent.match(/BlackBerry/i)
 			|| agent.match(/Windows Phone/i)) ? true : false;
+		if (this.mobile) {
+			document.body.addEventListener('touchmove', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				this.remindNav();
+			}, {passive: false});
+		}
 	},
 	mounted() {
 		if (this.mobile) {
 			this.remindNav();
 		}
+		this.setCurrentScreen(window.innerHeight, window.pageYOffset);
 	},
 	methods: {
+		setCurrentScreen(vh, pos) {
+			let offset = vh * .2;
+			let idx = Math.floor((pos + offset >= vh * this.screens.length ? pos : pos + offset) / vh);
+			this.currentScreen = this.screens[idx].name;
+		},
 		navigateTo(screenName, instant = false) {
 			let duration = (this.mobile || instant) ? '0' : 300;
 			this.$scrollTo(`#screen-${screenName}`, {

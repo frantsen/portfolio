@@ -154,7 +154,7 @@ export default {
 }
 
 .container {
-	width: 800px;
+	min-width: 800px;
 	height: 428px;
 }
 
