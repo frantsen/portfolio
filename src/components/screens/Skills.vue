@@ -4,16 +4,20 @@
 			<div class="commit-list">
 				<span v-for="(commit, index) in commitsDescending" :key="`commit-hash-${index}`">
 					<div class="commit-wrapper">
-						<div @click="selectCommit(index)" class="hash-link">{{commit.hashLabel}}</div>
+						<div @click="selectCommit(index)" class="hash-link">
+							{{commit.hashLabel}}
+						</div>
 						{{commit.date | timeSinceDate}}
 					</div>
 				</span>
 			</div>
 			<div class="diff-display">
-				<div v-for="(line, index) in commitSrc" :key="`src-line-${index}`">
+				<div v-for="(line, index) in commitSource" :key="`src-line-${index}`">
 					<div :class="['diff-line', line.type]">
 						{{line.content}}
-						<div class="message">{{line.message}}</div>
+						<div class="message">
+							{{line.message}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -22,40 +26,19 @@
 </template>
 
 <script>
-const LineDiff = {
+const SnapshotLineType = {
 	Addition: 'addition',
 	Deletion: 'deletion',
 	NoChange: 'nochange',
 };
 
 class Commit {
-	constructor(hashLabel, message, date, changes) {
+	constructor(hashLabel, message, date, additions, modifications) {
 		this.hashLabel = hashLabel;
 		this.message = message;
 		this.date = date;
-		this.changes = changes;
-	}
-}
-
-class LineChange {
-	constructor(linePosition) {
-		this.position = linePosition;
-	}
-}
-
-class Addition extends LineChange {
-	constructor(linePosition, content) {
-		super(linePosition);
-		this.content = content;
-		this.type = LineDiff.Addition;
-	}
-}
-
-class Deletion extends LineChange {
-	constructor(linePosition) {
-		super(linePosition);
-		this.type = LineDiff.Deletion;
-		this.del = true;
+		this.additions = additions || [];
+		this.modifications = modifications || [];
 	}
 }
 
@@ -64,91 +47,85 @@ export default {
 	data: () => ({
 		idxSelectedCommit: 8,
 		commits: [
-			new Commit('e1b6410', 'Inspired by my dad\'s site & others', new Date(2002, 0), [
-				new Addition(0, 'HTML: Personal site 1.0'),
-			]),
-			new Commit('c0061d0', 'Recursion clicks; coding is awesome', new Date(2015, 1), [
-				new Addition(1, 'Python'),
-			]),
-			new Commit('f523646', 'First tech gig!', new Date(2015, 5), [
-				new Deletion(0),
-				new Addition(1, 'JS'),
-				new Addition(0, 'HTML'),
-			]),
-			new Commit('85aaa3f', 'Software design; TA for Intro', new Date(2015, 8), [
-				new Addition(0, 'C++'),
-				new Deletion(3),
-				new Addition(3, 'Python'),
-			]),
-			new Commit('g3002a0', 'Recursive AND minimalistic?? Sweet!', new Date(2016, 1), [
-				new Addition(4, 'SQL'),
-				new Addition(4, 'Scheme'),
-				new Addition(0, 'Android'),
-				new Deletion(1),
-				new Addition(1, 'C++ TA'),
-			]),
-			new Commit('eb9f3c5', 'Intern at Protolabs Inc.', new Date(2016, 5), [
-				new Deletion(6),
-				new Addition(4, 'Microsoft SQL Server'),
-				new Deletion(2),
-				new Addition(2, 'HTML'),
-				new Addition(1, 'ASP.NET MVC'),
-			]),
-			new Commit('46c390e', 'Adventures in scripting', new Date(2016, 8), [
-				new Addition(2, 'Bash'),
-			]),
-			new Commit('7530344', 'C++ level up with ALGORITHMS', new Date(2017, 1), [
-				new Deletion(3),
-				new Addition(3, 'C++'),
-			]),
-			new Commit('0f830e9', 'Protolabs ECommerce project', new Date(2017, 5), [
-				new Addition(9, 'Vue.js'),
-				new Addition(7, 'PowerShell'),
-				new Addition(7, '.NET Core'),
-				new Addition(5, 'Jest'),
-				new Addition(4, 'Entity Framework Core'),
-				new Deletion(7),
-			]),
+			new Commit('e1b6410', 'Inspired by my dad\'s site & others', new Date(2002, 0),
+				['HTML: Personal site 1.0']),
+			new Commit('c0061d0', 'Recursion clicks; coding is awesome', new Date(2015, 1),
+				['Python']),
+			new Commit('f523646', 'First tech gig!', new Date(2015, 5),
+				['JavaScript'],
+				[{original: 'HTML: Personal site 1.0', modified: 'HTML'}]),
+			new Commit('85aaa3f', 'Software design; TA for Intro', new Date(2015, 8), undefined,
+				[{original: 'Python', modified: 'Python'}]),
+			new Commit('g3002a0', 'Recursive AND minimalistic?? Sweet!', new Date(2016, 1),
+				['SQL', 'Scheme', 'Android'],
+				[{original: 'C++', modified: 'C++'}]),
+			new Commit('eb9f3c5', 'Intern at Protolabs Inc.', new Date(2016, 5),
+				['ASP.NET MVC'],
+				[{original: 'HTML', modified: 'HTML'}, {original: 'SQL', modified: 'SQL Server'}]),
+			new Commit('46c390e', 'Adventures in scripting', new Date(2016, 8),
+				['Bash']),
+			new Commit('7530344', 'C++ level up with ALGORITHMS', new Date(2017, 1), undefined,
+				[{original: 'C++', modified: 'C++'}]),
+			new Commit('0f830e9', 'Protolabs ECommerce project', new Date(2017, 5),
+				['PowerShell', 'Jest', 'Entity Framework Core'],
+				[{original: 'JavaScript', modified: 'Vue.js'}, {original: 'ASP.NET MVC', modified: '.NET Core'}]),
 		],
 	}),
 	computed: {
-		commitsDescending() {
-			return this.commits.slice().reverse();
-		},
-		commitSrc() {
-			let linesResult = [];
-			for (let i = 0; i < this.idxSelectedCommit + 1; ++i) {
-				let commit = this.commits[i];
-				if (linesResult.length > 0) {
-					linesResult = linesResult.filter(l => l.type !== LineDiff.Deletion);
-				}
-				for (let j = 0; j < commit.changes.length; ++j) {
-					let line = commit.changes[j];
-					if (line.del) {
-						linesResult[line.position].type = LineDiff.Deletion;
-					} else {
-						let pos = line.position + ((linesResult[line.position] || {}).type === LineDiff.Deletion ? 1 : 0);
-						linesResult.splice(pos, 0, ({
-							type: ((i === this.idxSelectedCommit) ? LineDiff.Addition : LineDiff.NoChange),
-							content: line.content,
+		snapshots() {
+			return this.commits.reduce((snapshots, commit, index, _) => {
+				const lastSnapshot = index === 0 ? [] : snapshots[index - 1];
+				let currentSnapshot = lastSnapshot
+					.filter((l) => l.type !== SnapshotLineType.Deletion)
+					.map((i) => Object.assign({}, i));
+
+				const deletionKeys = commit.modifications
+					.map((m) => m.original);
+				currentSnapshot
+					.forEach((l) => l.type = deletionKeys.includes(l.content)
+						? SnapshotLineType.Deletion
+						: SnapshotLineType.NoChange);
+
+				currentSnapshot = currentSnapshot
+					.concat(commit.additions
+						.concat(commit.modifications
+							.map((m) => m.modified) || [])
+						.map((c) => ({
+							content: c,
+							type: SnapshotLineType.Addition,
 							message: commit.message,
-						}));
-					}
-				}
-			}
-			return linesResult;
+							date: commit.date,
+						})))
+					.sort(this.snapshotLineSort);
+
+				snapshots.push(currentSnapshot);
+				return snapshots;
+			}, []);
+		},
+		commitsDescending() {
+			return Array.from(this.commits.map((c) => ({
+				hashLabel: c.hashLabel,
+				date: c.date,
+			}))).reverse();
+		},
+		commitSource() {
+			return this.snapshots[this.idxSelectedCommit];
 		},
 	},
 	filters: {
 		timeSinceDate(date) {
 			let seconds = Math.floor((new Date() - date) / 1000);
-			let intervals = [{sec: 31536000, type: 'year'},
+			let intervals = [
+				{sec: 31536000, type: 'year'},
 				{sec: 2592000, type: 'month'},
 				{sec: 86400, type: 'day'},
 				{sec: 3600, type: 'hour'},
-				{sec: 60, type: 'minute'}];
+				{sec: 60, type: 'minute'},
+			];
 			let interval = intervals.find(i => Math.floor(i.sec < seconds));
-			if (!interval) return 'a moment ago';
+			if (!interval) {
+				return 'a moment ago';
+			}
 			let count = Math.floor(seconds / interval.sec);
 			return `${count} ${interval.type}${count > 1 ? 's' : ''} ago`;
 		},
@@ -157,6 +134,16 @@ export default {
 		selectCommit(descIdxSelected) {
 			this.idxSelectedCommit = this.commits.length - 1 - descIdxSelected;
 		},
+		snapshotLineSort: (a, b) =>
+			a.content > b.content
+				? 1
+				: a.content < b.content
+					? -1
+					: a.type === SnapshotLineType.Deletion
+						? -1
+						: b.type === SnapshotLineType.Deletion
+							? 1
+							: 0,
 	},
 };
 </script>
@@ -188,7 +175,7 @@ export default {
 }
 
 .commit-list {
-	width: 190px;
+	width: 200px;
 	display: inline-block;
 	padding: 10px;
 	margin-right: 10px;
