@@ -11,8 +11,12 @@ export default {
 </script>
 
 <style>
-body {
+body, html {
 	margin: 0px;
+	padding: 0px;
+}
+
+body {
 	max-width: 100%;
 	overflow-x: hidden;
 }

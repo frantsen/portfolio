@@ -2,8 +2,8 @@
 	<div class="intro">
 		<div class="stripe" @click="shortDesc=!shortDesc">
 			<div class="stripe-internal" v-show="shortDesc">
-				<img :src="fullImgPath('portrait.png')" alt="Portrait">
-				</img><div class="stripe-intro">
+				<img :src="fullImgPath('portrait.png')" alt="Portrait"/>
+				<div class="stripe-intro">
 					currently geeking out<br>
 					about scientific<br>
 					computing, the<br>
@@ -21,13 +21,12 @@
 					as I could, and to my surprise, I found myself thriving.
 				</p>
 				<p>
-					When I was a little kid I wanted to be a writer, a scientist, and an
-					artist - and now I get to be all those things!
+					As a software engineer, I get to be the writer-scientist-artist
+					I always dreamed of becoming!
 				<p>
-					I love the theoretical and the technical.
-					I'm hungry for the struggles that make me better.
+					I am hungry for the struggles that make me better.
 					I strive to create elegance in engineering.
-					I'm lucky the software world has no shortage of
+					I am lucky the software world has no shortage of
 					new things to learn - enough to satisfy a lifelong addiction!
 				</p>
 			</div>
@@ -37,7 +36,7 @@
 
 <script>
 export default {
-	class: 'intro',
+	name: 'intro',
 	data: () => ({
 		shortDesc: true,
 	}),

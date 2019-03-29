@@ -2,19 +2,35 @@
 	<div class="cover">
 		<div class="background-tile">
 		</div>
-		<div class="animation-wrapper">
+		<div class="canvas">
 		</div>
 		<div class="cover-text">
 			Rachel Frantsen
 		</div>
-		<div class="clickable-overlay" @click="$emit('overlayClick')">
+		<div class="clickable-overlay" @click="navigateNext">
 		</div>
 	</div>
 </template>
 
 <script>
+// Vision: 3d particlescape with lines drawn only between nodes within a vertical zone
+// Z-faded for depth and x/y boundary, opacity based on proximity to visible vertical zone
 export default {
 	name: 'cover',
+	methods: {
+		navigateNext() {
+			const screenName = 'intro';
+			let vm = this;
+			this.$scrollTo(`#screen-${screenName}`, {
+				onDone() {
+					vm.$emit('navigate', screenName);
+				},
+				duration: 300,
+				easing: 'ease-out',
+				cancelable: true,
+			});
+		},
+	},
 };
 </script>
 
@@ -34,7 +50,7 @@ export default {
 	background-color: lightslategray;
 }
 
-.animation-wrapper, .clickable-overlay {
+.canvas, .clickable-overlay {
 	position: absolute;
 	height: 100%;
 	width: 100%;

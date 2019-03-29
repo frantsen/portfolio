@@ -1,13 +1,15 @@
 <template>
 	<div class="navigation">
-		<div class="title">Rachel Frantsen<span v-if="title !== 'Intro'"> | {{title}}</span></div>
+		<div class="title">Rachel Frantsen
+			<span v-if="active !== 'intro'">| {{active | title}}</span>
+		</div>
 		<div class="nav-wrapper">
-			<div v-for="(item, index) in menuItems"
+			<div v-for="(item, index) in items"
 				:key="`nav-item-${index}`"
 				class="nav-item"
-				:class="{active: item.label === title}"
-				@click="$emit('click', item.name)">
-				{{item.label}}
+				:class="{active: item === active}"
+				@click="navigateTo(item)">
+				{{item | title}}
 			</div>
 		</div>
 	</div>
@@ -16,29 +18,31 @@
 <script>
 export default {
 	name: 'navigation',
-	props: [
-		'title',
-	],
-	data: () => ({
-		menuItems: [
-			{
-				name: 'cover',
-				label: 'Top',
-			},
-			{
-				name: 'intro',
-				label: 'Intro',
-			},
-			{
-				name: 'skills',
-				label: 'Skills',
-			},
-			{
-				name: 'connect',
-				label: 'Connect',
-			},
-		],
-	}),
+	props: ['active', 'items'],
+	filters: {
+		title(value) {
+			return {
+				'cover': 'Top',
+				'intro': 'Intro',
+				'skills': 'Skills',
+				'projects': 'Projects',
+				'blog': 'Blog',
+				'connect': 'Connect',
+			}[value];
+		},
+	},
+	methods: {
+		navigateTo(screenName) {
+			this.$scrollTo(`#screen-${screenName}`, {
+				onDone: () => {
+					this.$emit('screenSet', screenName);
+				},
+				duration: 300,
+				easing: 'ease-out',
+				cancelable: true,
+			});
+		},
+	},
 };
 </script>
 
@@ -94,7 +98,6 @@ export default {
 }
 
 .nav-item:hover {
-	/* background-color: rgba(255,255,255,.08); */
 	background-color: rgba(0,0,0,.02);
 }
 

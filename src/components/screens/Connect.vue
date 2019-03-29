@@ -14,7 +14,7 @@
 <script>
 export default {
 	name: 'connect',
-	props: ['mobile'],
+	// props: ['mobile'],
 	data: () => ({
 		links: [
 			{
@@ -38,6 +38,7 @@ export default {
 				description: 'Send me a good old-fashioned email',
 			},
 		],
+		mobile: false,
 	}),
 	methods: {
 		fullImgPath(name) {
