@@ -3,7 +3,7 @@
 		<div v-for="(screen, index) in screens"
 			:key="`screen-index-${index}`"
 			:id="`screen-${screen}`"
-			:class="[screen, {focused: currentScreen === screen}]">
+			:class="['screen', {focused: currentScreen === screen}]">
 			<nav-menu v-if="screen !== 'cover'"
 				:active="screen"
 				:items="screens"
@@ -40,7 +40,6 @@ export default {
 	},
 	data: () => ({
 		screens: ['cover', 'intro', 'skills', 'connect'],
-		mobile: false,
 		leftOpacity: 1.0,
 		rightOpacity: 1.0,
 		navInProgress: false,
@@ -48,30 +47,27 @@ export default {
 	}),
 	mounted() {
 		this.remindNav();
-		this.setCurrentScreen(window.innerHeight, window.pageYOffset);
+		this.currentScreen = this.determineCurrentScreen(window.innerHeight, window.pageYOffset);
 	},
 	methods: {
-		setCurrentScreen(vh, pos) {
+		determineCurrentScreen(vh, pos) {
 			let offset = vh * .2;
 			let idx = Math.floor((pos + offset >= vh * this.screens.length ? pos : pos + offset) / vh);
-			this.currentScreen = this.screens[idx].name;
-		},
-		setScreen(screenName) {
-			this.currentScreen = screenName;
+			return this.screens[idx];
 		},
 		mobileNext() {
 			if (this.navInProgress) {
 				return;
 			}
 			this.navInProgress = true;
-			let nextScreenIdx = this.screens.findIndex(s=>s.name===this.currentScreen)+1;
+			let nextScreenIdx = this.screens.findIndex(s=>s===this.currentScreen)+1;
 			if (nextScreenIdx >= this.screens.length) {
 				this.navInProgress = false;
 				return;
 			}
 			this.rightOpacity = 0.7;
 			let hideArrow = setTimeout(() => this.rightOpacity = 0.0, 150);
-			this.setScreen(this.screens[nextScreenIdx].name);
+			this.currentScreen = this.screens[nextScreenIdx];
 			this.navInProgress = false;
 		},
 		mobileBack() {
@@ -79,7 +75,7 @@ export default {
 				return;
 			}
 			this.navInProgress = true;
-			let prevScreenIdx = this.screens.findIndex(s=>s.name===this.currentScreen)-1;
+			let prevScreenIdx = this.screens.findIndex(s=>s===this.currentScreen)-1;
 			if (prevScreenIdx < 0) {
 				this.navInProgress = false;
 				let hideArrow = setTimeout(() => this.leftOpacity = 0.0, 90);
@@ -87,7 +83,7 @@ export default {
 			}
 			this.leftOpacity = 0.7;
 			let hideArrow = setTimeout(() => this.leftOpacity = 0.0, 150);
-			this.setScreen(this.screens[prevScreenIdx].name);
+			this.currentScreen = this.screens[prevScreenIdx];
 			this.navInProgress = false;
 		},
 		remindNav() {
