@@ -2,7 +2,7 @@
 	<div class="cover">
 		<div class="background-tile">
 		</div>
-		<div class="canvas">
+		<div class="canvas-wrapper">
 		</div>
 		<div class="cover-text">
 			Rachel Frantsen
@@ -50,7 +50,7 @@ export default {
 	background-color: lightslategray;
 }
 
-.canvas, .clickable-overlay {
+.canvas-wrapper, .clickable-overlay {
 	position: absolute;
 	height: 100%;
 	width: 100%;
