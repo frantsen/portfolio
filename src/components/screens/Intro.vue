@@ -1,17 +1,21 @@
 <template>
 	<div class="intro">
 		<div class="stripe" @click="shortDesc=!shortDesc">
-			<div class="stripe-internal" v-show="shortDesc">
+			<div class="img-wrapper" v-show="shortDesc">
 				<img :src="fullImgPath('portrait.png')" alt="Portrait"/>
-				<div class="stripe-intro">
+			</div>
+			<div class="stripe-intro" v-show="shortDesc">
+				<p>
 					currently geeking out<br>
 					about scientific<br>
 					computing, the<br>
 					science of computing,<br>
 					and engineering<br>
-					as art.<br><br>
+					as art.
+				</p>
+				<p>
 					click for more...
-				</div>
+				</p>
 			</div>
 			<div class="stripe-story" v-show="!shortDesc">
 				<p>
@@ -23,6 +27,7 @@
 				<p>
 					As a software engineer, I get to be the writer-scientist-artist
 					I always dreamed of becoming!
+				</p>
 				<p>
 					I am hungry for the struggles that make me better.
 					I strive to create elegance in engineering.
@@ -52,68 +57,70 @@ export default {
 <style lang="scss" scoped>
 .intro {
 	height: 100%;
-	width: 100vw;
-	position: absolute;
-	margin: 62px 0 0;
-	text-align: center;
+	width: 100%;
+	display: flex;
 }
 
 .stripe {
 	background-color: slategray;
-	height: 40vh;
-	padding: 5vh 0;
-	margin-top: calc(20vh - 62px);
-	position: relative;
-	transition: .5s;
-}
+	height: 50%;
+	margin: auto;
+	flex: 1;
+	transition: background-color .2s;
+	display: flex;
+	justify-content: center;
+	min-height: 310px;
 
-.stripe:hover {
-	background-color: #91a0af;
-	cursor: crosshair;
-}
+	&:hover {
+		background-color: rgba(112, 128, 144, .9);
+		cursor: crosshair;
+	}
 
-.closed {
-	transform: scaleY(0);
-}
+	.img-wrapper {
+		flex: 1;
+		height: 100%;
+		text-align: right;
 
-.open {
-	transform: scaleY(1);
-}
-
-.stripe-internal {
-	min-width: 54vw;
-	height: 100%;
-	position: relative;
-	float: right;
-}
-
-.stripe img {
-	max-height: 40vh;
-	max-width: 42.4vw;
-	float: left;
-	display: table-cell;
+		img {
+			height: 100%;
+			display: inline-block;
+		}
+	}
 }
 
 .stripe-intro, .stripe-story {
+	height: calc(100%-20px);
 	color: #fff;
-	margin-left: 5%;
 	text-align: left;
-	max-height: 45vh;
-	padding: 0 5vw;
-	display: table-cell;
-}
+	font-size: 16pt;
+	padding: 10px 15px;
+	flex: 1;
 
-.stripe-intro {
-	font-size: 18pt;
-	width: 42.4vw;
-	overflow: hidden;
+	p {
+		margin: 12px;
+	}
 }
 
 .stripe-story {
-	font-size: 3vmin;
-	width: 80vw;
-	padding: 0 10vw 5vh;
-	background-color: inherit;
-	overflow: visible;
+	max-width: 900px;
+	margin: auto;
+}
+
+@media (max-width: 552px) {
+	.stripe-story p {
+		font-size: 3.8vmin;
+	}
+}
+
+@media (max-width: 499px) {
+	.stripe-intro {
+		p {
+			font-size: 3.9vmin;
+		}
+
+		br {
+			display: none;
+		}
+	}
 }
 </style>

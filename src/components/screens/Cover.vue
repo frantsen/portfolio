@@ -44,9 +44,11 @@ export default {
 }
 
 .background-tile {
-	position: absolute;
 	width: 65%;
 	height: 65%;
+	margin: auto;
+	position: absolute;
+	flex: 1;
 	background-color: lightslategray;
 }
 
@@ -54,6 +56,7 @@ export default {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	flex: 1;
 }
 
 .clickable-overlay {
@@ -65,8 +68,14 @@ export default {
 	width: 61%;
 	color: #fff;
 	text-align: center;
-	font-size: 7vmin;
+	font-size: 42pt;
 	font-weight: bold;
 	letter-spacing: .5vw;
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+	.cover-text {
+		font-size: 11vmin;
+	}
 }
 </style>

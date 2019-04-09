@@ -2,14 +2,14 @@
 	<div class="skills">
 		<div class="container">
 			<div class="commit-list">
-				<span v-for="(commit, index) in commitsDescending" :key="`commit-hash-${index}`">
+				<div v-for="(commit, index) in commitsDescending" :key="`commit-hash-${index}`">
 					<div class="commit-wrapper">
 						<div @click="selectCommit(index)" class="hash-link">
 							{{commit.hashLabel}}
 						</div>
-						{{commit.date | timeSinceDate}}
+						<div class="align-right">{{commit.date | timeSinceDate}}</div>
 					</div>
-				</span>
+				</div>
 			</div>
 			<div class="diff-display">
 				<div v-for="(line, index) in commitSource" :key="`src-line-${index}`">
@@ -150,23 +150,26 @@ export default {
 
 <style lang="scss" scoped>
 .skills {
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: center;
 }
 
 .container {
-	min-width: 800px;
-	height: 428px;
+	max-width: 800px;
+	min-width: 600px;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	transition: height 2s ;
 }
 
 .hash-link {
 	color: dodgerblue;
-	display: inline-block;
-	width: 70px;
+	display: inline-flex;
+	flex: 1;
+	text-align: right;
 
 	&:hover {
 		cursor: crosshair;
@@ -175,21 +178,20 @@ export default {
 }
 
 .commit-list {
-	width: 200px;
 	display: inline-block;
 	padding: 10px;
 	margin-right: 10px;
 	background-color: whitesmoke;
-	height: 100%;
+	flex: .9;
+}
+
+.diff-display {
+	flex: 2;
 }
 
 .commit-wrapper {
 	padding: 5px;
-}
-
-.diff-display {
-	float: right;
-	width: 570px;
+	display: flex;
 }
 
 .nochange {
@@ -213,5 +215,16 @@ export default {
 
 .diff-line {
 	padding: 5px;
+}
+
+@media (max-width: 600px) {
+	.container {
+		min-width: 400px;
+		max-width: 80%;
+	}
+
+	.commit-list {
+		display: none;
+	}
 }
 </style>

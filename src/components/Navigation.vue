@@ -1,9 +1,9 @@
 <template>
 	<div class="navigation">
-		<div class="title">Rachel Frantsen
+		<div class="title mobile-hide">Rachel Frantsen
 			<span v-if="active !== 'intro'">| {{active | title}}</span>
 		</div>
-		<div class="nav-wrapper">
+		<div class="nav-wrapper mobile-hide">
 			<div v-for="(item, index) in items"
 				:key="`nav-item-${index}`"
 				class="nav-item"
@@ -11,6 +11,9 @@
 				@click="navigateTo(item)">
 				{{item | title}}
 			</div>
+		</div>
+		<div class="mobile-label mobile-show">
+			{{active | title}}
 		</div>
 	</div>
 </template>
@@ -103,5 +106,26 @@ export default {
 
 .active {
 	color: rgba(0,0,0,.53);
+}
+
+.mobile-label {
+	display: none;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 10vmin;
+	position: absolute;
+	font-weight: bold;
+	font-variant: initial;
+	opacity: .3;
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+	.mobile-hide {
+		display: none;
+	}
+
+	.mobile-label {
+		display: block;
+	}
 }
 </style>

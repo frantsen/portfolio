@@ -3,18 +3,20 @@
 		<div class="social-container">
 			<a v-for="(link, index) in links" :key="`social-link-${index}`" :href="link.url">
 				<div class="social-link">
-					<img :src="fullImgPath(link.label)" :alt="link.label"></img>
-					<div class="social-description" :class="{'opacity-mobile': !mobile}">{{link.description}}</div>
+					<img :src="fullImgPath(link.label)" :alt="link.label" />
+					<div class="social-description">
+						{{link.description}}
+					</div>
 				</div>
 			</a>
 		</div>
 	</div>
 </template>
 
+    "three": "^0.103.0",
 <script>
 export default {
 	name: 'connect',
-	// props: ['mobile'],
 	data: () => ({
 		links: [
 			{
@@ -53,51 +55,53 @@ export default {
 .connect {
 	display: flex;
 	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
 }
 
 .social-container {
+	flex: 1;
+	margin: auto;
 	display: table;
 }
 
-.social-link {
-	display: table-row;
-	width: 100%;
-}
-
 a {
-	max-width: 50vw;
-	min-width: 36vh;
 	display: block;
 	color: inherit;
 	text-decoration: none;
 	cursor: crosshair;
 	padding: 2vh;
+	transition-duration: 300ms;
+	opacity: 0.5;
 
-	&:hover .social-description {
+	&:hover {
 		opacity: 1.0;
+	}
+
+	.social-link {
+		display: table-row;
+		width: 100%;
+
+		img {
+			width: 5vmax;
+			max-width: 55px;
+			display: table-cell;
+		}
+	}
+
+	.social-description {
+		display: table-cell;
+		vertical-align: middle;
+		padding-left: 20px;
+		width: 100%;
 	}
 }
 
-.opacity-mobile {
-	opacity: 0.2;
-}
-
-.social-description {
-	display: table-cell;
-	transition-duration: 300ms;
-	font-size: 1.5vmax;
-	vertical-align: middle;
-	padding-left: 20px;
-	width: 100%;
-}
-
-.social-link img {
-	width: 5vmax;
-	max-width: 55px;
-	display: table-cell;
+@media (max-width: 500px) and (orientation: portrait) {
+	.social-description {
+		opacity: 1.0;
+	}
 }
 </style>
