@@ -65,8 +65,8 @@ export default {
 	},
 	methods: {
 		loop() {
-			this.renderer.render( this.$store.state.scene, this.camera );
 			requestAnimationFrame( this.loop );
+			this.renderer.render( this.$store.state.scene, this.camera );
 		},
 
 		// Returns position in 2D coordinates for point in 3D space:

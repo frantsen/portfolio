@@ -66,7 +66,8 @@ export default {
 				break;
 		}
 		this.camera.up.set( 0, 0, 1 );
-		this.camera.lookAt( new Three.Vector3( 0, 0, 0 ) );
+		// this.camera.lookAt( new Three.Vector3( 0, 0, 0 ) );
+		this.camera.lookAt(this.$store.state.scene.position);
 
 		this.renderer = new Three.WebGLRenderer({
 			alpha: true,
