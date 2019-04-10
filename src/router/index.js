@@ -9,7 +9,7 @@ Vue.use(Router);
 Vue.use(VueScrollTo);
 
 export default new Router({
-	mode: 'history',
+	mode: 'hash',
 	routes: [
 		{
 			name: 'home',
