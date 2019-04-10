@@ -3,8 +3,7 @@ import Router from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
 import Home from '../components/Home';
 import Error404 from '../components/screens/Error404';
-import Experiment from '../components/Experiment';
-import Experiment2 from '../components/Experiment2';
+import ThreeRemix from '../components/ThreeRemix';
 
 Vue.use(Router);
 Vue.use(VueScrollTo);
@@ -27,19 +26,11 @@ export default new Router({
 		// },
 		{
 			name: 'threeJSattempt',
-			path: '/experiment',
-			component: Experiment,
+			path: '/three-vue',
+			component: ThreeRemix,
 			meta: {
-				title: 'Three.js Experiment'
-			}
-		},
-		{
-			name: 'secondthreeJSattempt',
-			path: '/experiment2',
-			component: Experiment2,
-			meta: {
-				title: 'Three.js Experiment'
-			}
+				title: 'MrDoob x IanPaschal - Three.js + WebGL + Vue'
+			},
 		},
 		{
 			name: 'error',

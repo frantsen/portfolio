@@ -19,8 +19,8 @@ router.afterEach((to, from) => {
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
-	store: store,
-	router: router,
+	store,
+	router,
 	template: '<App/>',
 	components: { App }
 });

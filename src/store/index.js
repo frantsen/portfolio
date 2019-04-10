@@ -1,6 +1,4 @@
 import * as Three from 'three';
-// import Vue = require("vue/dist/vue.min.js");
-// const Vuex = require("vuex");
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -22,17 +20,7 @@ export default new Vuex.Store({
 			showSceneBorders: true,
 			objectEdgeSize: 8,
 			gizmoSize: 64
-		}
+		},
+		camera: new Three.PerspectiveCamera(),
 	},
-	getters: {},
-	mutations: {
-		price( state, payload ) {
-			// state.price = payload;
-		}
-	},
-	actions: {
-		loadFile( context, path ) {
-			// context.state.scene.add( slices );
-		}
-	}
 });
