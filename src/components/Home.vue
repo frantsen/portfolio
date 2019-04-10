@@ -3,7 +3,7 @@
 		<div v-for="(screen, index) in screens"
 			:key="`screen-index-${index}`"
 			:id="`screen-${screen}`"
-			:class="['screen', {focused: currentScreen === screen}]">
+			class="screen">
 			<nav-menu v-if="screen !== 'cover'"
 				:active="screen"
 				:items="screens">
