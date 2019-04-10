@@ -35,12 +35,16 @@ export default {
 	mounted() {
 		this.width = this.$el.offsetWidth;
 		this.height = this.$el.offsetHeight;
-		// this.aspect = this.width / this.height;
+		this.aspect = this.width / this.height;
 
-		this.camera = new Three.PerspectiveCamera( 45, this.aspect, 1, 1024 );
-		this.camera.position.set( this.zoom, this.zoom, this.zoom );
-		this.camera.up.set( 0, 0, 1 );
-		this.camera.lookAt( new Three.Vector3( 0, 0, 0 ) );
+		// this.camera = new Three.PerspectiveCamera( 45, this.aspect, 1, 1024 );
+		// this.camera.position.set( this.zoom, this.zoom, this.zoom );
+		// this.camera.up.set( 0, 0, 1 );
+		// this.camera.lookAt( new Three.Vector3( 0, 0, 0 ) );
+        this.camera = new Three.PerspectiveCamera(50, this.aspect, 1, 10000);
+        this.camera.position.z = 500;
+		this.$store.state.scene.add(this.camera);
+		
 		this.renderer = new Three.WebGLRenderer({
 			alpha: true,
 			antialias: false,
@@ -55,9 +59,9 @@ export default {
 		this.loop();
 	},
 	computed: {
-		aspect() {
-			return this.width / this.height;
-		}
+		// aspect() {
+		// 	return this.width / this.height;
+		// }
 	},
 	methods: {
 		loop() {
@@ -117,11 +121,11 @@ export default {
 		},
 
 		onResize(e) {
-			this.width = this.$el.offsetWidth;
-			this.height = this.$el.offsetHeight;
-			// this.camera.aspect = this.width / this.height;
-			this.camera.updateProjectionMatrix();
-			this.renderer.setSize( this.width, this.height );
+			// this.width = this.$el.offsetWidth;
+			// this.height = this.$el.offsetHeight;
+			// // this.camera.aspect = this.width / this.height;
+			// this.camera.updateProjectionMatrix();
+			// this.renderer.setSize( this.width, this.height );
 		}
 
 	}

@@ -1,6 +1,5 @@
 <template>
   <div>
-    hello
     <frame></frame>
   </div>
 </template>
@@ -22,16 +21,13 @@ let Frame = {
 			<div class="frame-top"></div>
 			<div class="frame-mid">
 				<div class='viewport-container'>
-					<OrthographicViewport view='top'/>
+					<PerspectiveViewport/>
 				</div>
-				
 			</div>
 			<div class="frame-bottom"></div>
 		</div>
 	`
 };
-
-let cube;
 
 export default {
     name: 'experiment-two',
@@ -42,6 +38,7 @@ export default {
 			return {
 				windowWidth: 0,
         windowHeight: 0,
+        cube: new Three.Mesh(),
 			};
 		},
 		render: h => h( Frame ),
@@ -53,13 +50,17 @@ export default {
 			this.$nextTick(function() {
 
 				// Build the Three.js scene:
-				let geometry = new Three.BoxGeometry( 1, 1, 1 );
-				let material = new Three.MeshBasicMaterial({ color: 0x00ff00 });
-				cube = new Three.Mesh( geometry, material );
-				cube.name = "myCube";
-				this.$store.state.scene.add( cube );
+				// let geometry = new Three.BoxGeometry( 1, 1, 1 );
+        // let material = new Three.MeshBasicMaterial({ color: 0x00ff00 });
+        
+				let geometry = new Three.CubeGeometry(200, 200, 200);
+        let material = new Three.MeshNormalMaterial();
 
-				setInterval( loop, 1000 / 60 );
+        this.cube = new Three.Mesh(geometry, material);
+				this.cube.name = "myCube";
+				this.$store.state.scene.add( this.cube );
+
+				setInterval( () => this.loop(), 1000 / 60 );
 			});
 		},
 		beforeDestroy() {
@@ -73,12 +74,12 @@ export default {
 			getWindowHeight: function( e ) {
 				this.windowHeight = document.documentElement.clientHeight;
       },
+      loop() {
+        this.cube.rotation.x += 0.01;
+        this.cube.rotation.y += 0.02;
+      }
 		}
   };
-  
-  
-function loop() {
-  cube.rotation.z += 0.05;
-}
+
 </script>
 
