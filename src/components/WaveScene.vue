@@ -26,6 +26,10 @@ export default {
 		AMOUNTY: 50,
 	}),
 	mounted() {
+		let camera = this.$store.state.camera;
+		camera.position.set(-2064.68917, 346.34446, -1157.06702);
+		camera.rotation.set(-2.85075, -1.04149, -2.88875);
+
 		this.$nextTick(() => {
 			// Build the Three.js scene:
 			let numParticles = this.AMOUNTX * this.AMOUNTY;

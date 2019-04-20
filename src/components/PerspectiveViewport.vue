@@ -4,7 +4,7 @@
 		v-on:mousemove="mousemove"
 		v-on:mouseup="mouseup"
 		v-resize.debounce="onResize">
-		<canvas class="layer3D"></canvas>
+		<canvas class="layer3D"/>
 	</div>
 </template>
 
@@ -59,9 +59,11 @@ export default {
 			let scene = this.$store.state.scene;
 			let camera = this.$store.state.camera;
 
-			camera.position.x += ( this.mouse.x - camera.position.x ) * .05;
-			camera.position.y += ( - this.mouse.y - camera.position.y ) * .05;
-			camera.lookAt( scene.position );
+			if (this.mouseControlEnabled) {
+				camera.position.x += ( this.mouse.x - camera.position.x ) * .05;
+				camera.position.y += ( - this.mouse.y - camera.position.y ) * .05;
+				camera.lookAt( scene.position );
+			}
 
 			requestAnimationFrame( this.loop );
 			this.renderer.render( scene, camera );

@@ -1,12 +1,9 @@
 <template>
 	<div class="cover">
-		<div class="animation-underlay"></div>
+		<div class="animation-underlay"/>
 		<wave-scene class="animation-tile"/>
-		<div class="cover-text">
-			Rachel Frantsen
-		</div>
-		<div class="clickable-overlay" @click="navigateNext">
-		</div>
+		<div class="cover-text">Rachel Frantsen</div>
+		<div class="clickable-overlay" @click="navigateNext"/>
 	</div>
 </template>
 
