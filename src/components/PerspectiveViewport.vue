@@ -4,7 +4,6 @@
 		v-on:mousemove="mousemove"
 		v-on:mouseup="mouseup"
 		v-resize.debounce="onResize">
-		<div class="layer2D"></div>
 		<canvas class="layer3D"></canvas>
 	</div>
 </template>
@@ -13,11 +12,18 @@
 import * as Three from "three";
 import resize from "vue-resize-directive";
 // import OrbitControlModule from "three-orbit-controls";
-// const OrbitControls = OrbitControlModule( Three );
+// const OrbitControls = OrbitControlModule(Three);
 
 export default {
 	name: 'perspective-viewport',
 	directives: {resize},
+	props: {
+		mouseControlEnabled: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
+	},
 	data: () => ({
 		renderer: new Three.WebGLRenderer(),
 		raycaster: new Three.Raycaster(),
@@ -31,8 +37,6 @@ export default {
 		this.updateDimensions();
 		let aspect = this.width / this.height;
 		let camera = new Three.PerspectiveCamera(50, aspect, 1, 10000);
-        camera.position.set(1290, 240, 2000);
-		camera.rotation.set(-0.11979, 0.56976, 0.06484);
 		this.$store.state.scene.add(camera);
 		this.$store.state.camera = camera;
 		
@@ -100,6 +104,7 @@ export default {
 		},
 		// Mouse move:
 		mousemove(e) {
+			if (!this.mouseControlEnabled) return;
 			this.mouse.x = e.offsetX - this.width/2;
 			this.mouse.y = e.offsetY - this.height/2;
 			// this.mouse.x = e.offsetX;
@@ -108,15 +113,17 @@ export default {
 		},
 		// Mouse down:
 		mousedown(e) {
+			if (!this.mouseControlEnabled) return;
 			this.raycast("mousedown");
 		},
 		// Mouse up:
 		mouseup(e) {
+			if (!this.mouseControlEnabled) return;
 			this.raycast("mouseup");
 		},
 		updateDimensions() {
-			this.width = document.documentElement.clientWidth;
-			this.height = document.documentElement.clientHeight;
+			this.width = this.$el.offsetWidth;
+			this.height = this.$el.offsetHeight;
 		},
 		onResize(e) {
 			this.updateDimensions();

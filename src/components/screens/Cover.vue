@@ -1,7 +1,7 @@
 <template>
 	<div class="cover">
-		<div class="background-tile">
-		</div>
+		<div class="animation-underlay"></div>
+		<wave-scene class="animation-tile"/>
 		<div class="cover-text">
 			Rachel Frantsen
 		</div>
@@ -11,8 +11,13 @@
 </template>
 
 <script>
+import WaveScene from '../WaveScene';
+
 export default {
 	name: 'cover',
+	components: {
+		WaveScene,
+	},
 	methods: {
 		navigateNext() {
 			const screenName = 'intro';
@@ -30,7 +35,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 .cover {
 	height: 100vh;
 	width: 100vw;
@@ -39,23 +44,27 @@ export default {
 	align-items: center;
 }
 
-.background-tile {
-	width: 65%;
-	height: 65%;
+.animation-tile, .animation-underlay {
+	width: 75%;
+	height: 75%;
 	margin: auto;
 	position: absolute;
 	flex: 1;
+}
+
+.animation-underlay {
 	background-color: lightslategray;
 }
 
-.canvas-wrapper, .clickable-overlay {
+.animation-tile {
+	opacity: .3;
+}
+
+.clickable-overlay {
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	flex: 1;
-}
-
-.clickable-overlay {
 	cursor: crosshair;
 }
 
