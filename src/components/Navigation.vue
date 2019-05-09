@@ -1,7 +1,6 @@
 <template>
 	<div class="navigation">
-		<div class="title mobile-hide">Rachel Frantsen
-			<span v-if="active !== 'intro'">| {{active | title}}</span>
+		<div class="title mobile-hide">Rachel Frantsen | {{active | title}}
 		</div>
 		<div class="nav-wrapper mobile-hide">
 			<div v-for="(item, index) in items"

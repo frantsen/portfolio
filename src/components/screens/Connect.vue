@@ -13,7 +13,6 @@
 	</div>
 </template>
 
-    "three": "^0.103.0",
 <script>
 export default {
 	name: 'connect',
@@ -27,7 +26,7 @@ export default {
 			{
 				label: 'GitHub',
 				url: 'https://github.com/frantsen',
-				description: 'Explore my open source contributions on GitHub',
+				description: 'Explore code I\'ve written',
 			},
 			{
 				label: 'Twitter',
@@ -74,7 +73,7 @@ a {
 	cursor: crosshair;
 	padding: 2vh;
 	transition-duration: 300ms;
-	opacity: 0.5;
+	opacity: 0.7;
 
 	&:hover {
 		opacity: 1.0;

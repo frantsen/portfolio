@@ -16,17 +16,9 @@ export default new Router({
 			path: '/',
 			component: Home,
 		},
-		// {
-		// 	name: 'blog',
-		// 	path: '/blog',
-		// 	component: Blog,
-		// 	meta: {
-		// 		title: 'Blog',
-		// 	},
-		// },
 		{
 			name: 'threeJSattempt',
-			path: '/three-vue',
+			path: '/three-remix',
 			component: ThreeRemix,
 			meta: {
 				title: 'MrDoob x IanPaschal - Three.js + WebGL + Vue'

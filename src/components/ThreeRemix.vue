@@ -46,11 +46,11 @@ export default {
 }
 
 .overlay-text {
-	color: rgba(255, 255, 255, .2);
-	font-weight: bold;
-	font-size: 6vmax;
+	color: rgba(255, 255, 255, .3);
+	font-size: 2.5vmax;
+	letter-spacing: .2vmax;
 	position: absolute;
-	padding: 10px;
+	padding: 10px 0 0 10px;
 
 	a {
 		text-decoration: none;
@@ -58,7 +58,7 @@ export default {
 	}
 
 	.overlay-subtext {
-		font-size: 4vmax;
+		font-size: 2vmax;
 	}
 }
 </style>

@@ -17,6 +17,11 @@ export default {
 			required: false,
 			default: false,
 		},
+		framesPerSecond: {
+			type: Number,
+			required: false,
+			default: 60,
+		},
 	},
 	data: () => ({
 		count: 0,
@@ -74,7 +79,7 @@ export default {
 			this.particles.name = "myParticles";
 			this.$store.state.scene.add( this.particles );
 
-			setInterval( () => this.loop(), 1000 / 60 );
+			setInterval( () => this.loop(), 1000 / this.framesPerSecond );
 		});
 	},
 	methods: {
@@ -99,35 +104,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="scss" scoped>
-/* .viewport {
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-
-.viewport.perspective {
-	background: #CCC; // For browsers that do not support gradients
-	background: -webkit-linear-gradient(var(--background-viewport-top), var(--background-viewport-bottom)); // For Safari 5.1 to 6.0
-	background: -o-linear-gradient(var(--background-viewport-top), var(--background-viewport-bottom)); // For Opera 11.1 to 12.0
-	background: -moz-linear-gradient(var(--background-viewport-top), var(--background-viewport-bottom)); // For Firefox 3.6 to 15
-	background: linear-gradient(var(--background-viewport-top), var(--background-viewport-bottom)); // Standard syntax
-}
-
-.viewport .layer2D, .viewport .layer3D {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.layer2D {
-	color: white;
-	font-size: 11px;
-	box-sizing: border-box;
-	padding: 8px;
-	font-weight: 300;
-} */
-</style>

@@ -1,7 +1,7 @@
 <template>
 	<div class="cover">
 		<div class="animation-underlay"/>
-		<wave-scene class="animation-tile"/>
+		<wave-scene class="animation-tile" :framesPerSecond="30"/>
 		<div class="cover-text">Rachel Frantsen</div>
 		<div class="clickable-overlay" @click="navigateNext"/>
 	</div>
@@ -42,8 +42,8 @@ export default {
 }
 
 .animation-tile, .animation-underlay {
-	width: 75%;
-	height: 75%;
+	width: 65%;
+	height: 65%;
 	margin: auto;
 	position: absolute;
 	flex: 1;

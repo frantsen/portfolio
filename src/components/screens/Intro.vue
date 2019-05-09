@@ -1,38 +1,16 @@
 <template>
 	<div class="intro">
 		<div class="stripe" @click="shortDesc=!shortDesc">
-			<div class="img-wrapper" v-show="shortDesc">
+			<div class="img-wrapper">
 				<img :src="fullImgPath('portrait.png')" alt="Portrait"/>
 			</div>
-			<div class="stripe-intro" v-show="shortDesc">
+			<div class="stripe-intro">
 				<p>
-					currently geeking out<br>
-					about scientific<br>
-					computing, the<br>
-					science of computing,<br>
-					and engineering<br>
-					as art.
+					trilingual nerd fluent in human, musical, and computer languages,
+					and passionate about becoming a better communicator in all three.
 				</p>
 				<p>
-					click for more...
-				</p>
-			</div>
-			<div class="stripe-story" v-show="!shortDesc">
-				<p>
-					Before discovering the creative universe of code, I was a musician.
-					Once I started my first CS course, though, I was hooked.
-					In the next 2 years I crammed in a CS major and as much work experience
-					as I could, and to my surprise, I found myself thriving.
-				</p>
-				<p>
-					As a software engineer, I get to be the writer-scientist-artist
-					I always dreamed of becoming!
-				</p>
-				<p>
-					I am hungry for the struggles that make me better.
-					I strive to create elegance in engineering.
-					I am lucky the software world has no shortage of
-					new things to learn - enough to satisfy a lifelong addiction!
+					bringing interdisciplinary perspectives and creativity to code since Hello world in 2015
 				</p>
 			</div>
 		</div>
@@ -59,6 +37,7 @@ export default {
 	height: 100%;
 	width: 100%;
 	display: flex;
+	direction: rtl;
 }
 
 .stripe {
@@ -66,20 +45,15 @@ export default {
 	height: 50%;
 	margin: auto;
 	flex: 1;
-	transition: background-color .2s;
 	display: flex;
 	justify-content: center;
 	min-height: 310px;
-
-	&:hover {
-		background-color: rgba(112, 128, 144, .9);
-		cursor: crosshair;
-	}
+	flex-direction: row-reverse;
 
 	.img-wrapper {
-		flex: 1;
+		width: 50%;
 		height: 100%;
-		text-align: right;
+		flex: 1;
 
 		img {
 			height: 100%;
@@ -88,39 +62,29 @@ export default {
 	}
 }
 
-.stripe-intro, .stripe-story {
-	height: calc(100%-20px);
+.stripe-intro {
 	color: #fff;
 	text-align: left;
 	font-size: 16pt;
-	padding: 10px 15px;
 	flex: 1;
+	width: 50%;
+	direction: initial;
 
 	p {
-		margin: 12px;
+		max-width: 300px;
+		margin: 10px 25px 15px 15px;
 	}
 }
 
-.stripe-story {
-	max-width: 900px;
-	margin: auto;
-}
-
-@media (max-width: 552px) {
-	.stripe-story p {
-		font-size: 3.8vmin;
+@media (max-width: 559px) {
+	.stripe-intro > p {
+		font-size: 3.85vmin;
 	}
 }
 
-@media (max-width: 499px) {
-	.stripe-intro {
-		p {
-			font-size: 3.9vmin;
-		}
-
-		br {
-			display: none;
-		}
+@media (max-width: 436px) {
+	.stripe-intro > p {
+		font-size: 13pt;
 	}
 }
 </style>
