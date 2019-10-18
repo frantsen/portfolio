@@ -24,14 +24,14 @@ export default {
 				description: 'Connect with me on LinkedIn',
 			},
 			{
+				label: 'Twitter',
+				url: 'https://twitter.com/rachelfrantsen',
+				description: 'Say hello on Twitter',
+			},
+			{
 				label: 'GitHub',
 				url: 'https://github.com/frantsen',
 				description: 'Explore code I\'ve written',
-			},
-			{
-				label: 'Twitter',
-				url: 'https://twitter.com/rachelfrantsen',
-				description: 'Follow me on Twitter',
 			},
 			{
 				label: 'Email',

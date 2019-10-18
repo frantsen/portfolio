@@ -1,17 +1,19 @@
 <template>
 	<div class="intro">
-		<div class="stripe" @click="shortDesc=!shortDesc">
+		<div class="stripe">
 			<div class="img-wrapper">
 				<img :src="fullImgPath('portrait.png')" alt="Portrait"/>
 			</div>
 			<div class="stripe-intro">
-				<p>
-					trilingual nerd fluent in human, musical, and computer languages,
-					and passionate about becoming a better communicator in all three.
-				</p>
-				<p>
-					bringing interdisciplinary perspectives and creativity to code since Hello world in 2015
-				</p>
+				<main>
+					<p>
+						trilingual nerd fluent in human, musical, and computer languages,
+						and passionate about becoming a better communicator in all three.
+					</p>
+					<p>
+						bringing interdisciplinary perspectives and creativity to code since Hello world in 2015
+					</p>
+				</main>
 			</div>
 		</div>
 	</div>
@@ -20,9 +22,6 @@
 <script>
 export default {
 	name: 'intro',
-	data: () => ({
-		shortDesc: true,
-	}),
 	methods: {
 		fullImgPath(name) {
 			let imagePath = require.context('../../assets', false, /\.png$/);
