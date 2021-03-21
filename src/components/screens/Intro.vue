@@ -62,16 +62,19 @@ export default {
 }
 
 .stripe-intro {
-	color: #fff;
-	text-align: left;
-	font-size: 16pt;
 	flex: 1;
 	width: 50%;
-	direction: initial;
 
-	p {
-		max-width: 300px;
-		margin: 10px 25px 15px 15px;
+	main {
+		color: #fff;
+		text-align: left;
+		font-size: 16pt;
+		direction: initial;
+
+		p {
+			max-width: 300px;
+			margin: 10px 25px 15px 15px;
+		}
 	}
 }
 

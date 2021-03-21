@@ -61,7 +61,6 @@ export default {
 }
 
 .social-container {
-	flex: 1;
 	margin: auto;
 	display: table;
 }
