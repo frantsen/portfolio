@@ -45,7 +45,7 @@ class Commit {
 export default {
 	name: 'skills',
 	data: () => ({
-		idxSelectedCommit: 8,
+		idxSelectedCommit: 9,
 		commits: [
 			new Commit('e1b6410', 'Inspired by my dad\'s site & others', new Date(2002, 0),
 				['HTML: Personal site 1.0']),
@@ -60,15 +60,18 @@ export default {
 				['SQL', 'Scheme', 'Android'],
 				[{original: 'C++', modified: 'C++'}]),
 			new Commit('eb9f3c5', 'Intern at Protolabs Inc.', new Date(2016, 5),
-				['ASP.NET MVC'],
+				['ASP.NET MVC', 'C#'],
 				[{original: 'HTML', modified: 'HTML'}, {original: 'SQL', modified: 'SQL Server'}]),
 			new Commit('46c390e', 'Adventures in scripting', new Date(2016, 8),
 				['Bash']),
 			new Commit('7530344', 'C++ level up with ALGORITHMS', new Date(2017, 1), undefined,
 				[{original: 'C++', modified: 'C++'}]),
-			new Commit('0f830e9', 'Protolabs ECommerce project', new Date(2017, 5),
+			new Commit('0f830e9', 'Protolabs ECommerce overhaul', new Date(2017, 5),
 				['PowerShell', 'Jest', 'Entity Framework Core'],
 				[{original: 'JavaScript', modified: 'Vue.js'}, {original: 'ASP.NET MVC', modified: '.NET Core'}]),
+			new Commit('dcf18cf', 'Facebook, FRL, Oculus, and Horizon!', new Date(2020, 11),
+				['ReactVR', 'Relay', 'Unity', 'GraphQL', 'Hacklang'],
+				[{original: 'C#', modified: 'C#'}])
 		],
 	}),
 	computed: {
