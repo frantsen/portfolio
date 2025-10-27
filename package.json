@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "Repository for my personal website.",
-  "author": "Rachel Frantsen <rachelfrantsen@gmail.com>",
+  "author": "Rachel Frantsen Lee <rachelfrantsen@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

@@ -2,7 +2,7 @@
 	<div class="cover">
 		<div class="animation-underlay"/>
 		<wave-scene class="animation-tile" :framesPerSecond="30"/>
-		<div class="cover-text">Rachel Frantsen</div>
+		<div class="cover-text">Rachel Frantsen Lee</div>
 		<div class="clickable-overlay" @click="navigateNext"/>
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<div class="navigation">
-		<div class="title mobile-hide">Rachel Frantsen | {{active | title}}
+		<div class="title mobile-hide">Rachel Frantsen Lee | {{active | title}}
 		</div>
 		<div class="nav-wrapper mobile-hide">
 			<div v-for="(item, index) in items"
