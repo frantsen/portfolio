@@ -48,30 +48,43 @@ export default {
 		idxSelectedCommit: 9,
 		commits: [
 			new Commit('e1b6410', 'Inspired by my dad\'s site & others', new Date(2002, 0),
-				['HTML: Personal site 1.0']),
+				['HTML: Personal site 1.0'
+			]),
 			new Commit('c0061d0', 'Recursion clicks; coding is awesome', new Date(2015, 1),
-				['Python']),
+				['Python']
+			),
 			new Commit('f523646', 'First tech gig!', new Date(2015, 5),
 				['JavaScript'],
-				[{original: 'HTML: Personal site 1.0', modified: 'HTML'}]),
+				[{original: 'HTML: Personal site 1.0', modified: 'HTML'}]
+			),
 			new Commit('85aaa3f', 'Software design; TA for Intro', new Date(2015, 8), undefined,
-				[{original: 'Python', modified: 'Python'}]),
+				[{original: 'Python', modified: 'Python'}]
+			),
 			new Commit('g3002a0', 'Recursive AND minimalistic?? Sweet!', new Date(2016, 1),
 				['SQL', 'Scheme', 'Android'],
-				[{original: 'C++', modified: 'C++'}]),
+				[{original: 'C++', modified: 'C++'}]
+			),
 			new Commit('eb9f3c5', 'Intern at Protolabs Inc.', new Date(2016, 5),
 				['ASP.NET MVC', 'C#'],
-				[{original: 'HTML', modified: 'HTML'}, {original: 'SQL', modified: 'SQL Server'}]),
+				[{original: 'HTML', modified: 'HTML'}, {original: 'SQL', modified: 'SQL Server'}]
+			),
 			new Commit('46c390e', 'Adventures in scripting', new Date(2016, 8),
-				['Bash']),
+				['Bash']
+			),
 			new Commit('7530344', 'C++ level up with ALGORITHMS', new Date(2017, 1), undefined,
-				[{original: 'C++', modified: 'C++'}]),
+				[{original: 'C++', modified: 'C++'}]
+			),
 			new Commit('0f830e9', 'Protolabs ECommerce overhaul', new Date(2017, 5),
 				['PowerShell', 'Jest', 'Entity Framework Core'],
-				[{original: 'JavaScript', modified: 'Vue.js'}, {original: 'ASP.NET MVC', modified: '.NET Core'}]),
-			new Commit('dcf18cf', 'Facebook, FRL, Oculus, and Horizon!', new Date(2020, 11),
-				['ReactVR', 'Relay', 'Unity', 'GraphQL', 'Hacklang'],
-				[{original: 'C#', modified: 'C#'}])
+				[{original: 'JavaScript', modified: 'Vue.js'}, {original: 'ASP.NET MVC', modified: '.NET Core'}]
+			),
+			new Commit('dcf18cf', 'Facebook, VR, Oculus, and Horizon', new Date(2020, 11),
+				['ReactVR', 'Relay', 'Unity', 'GraphQL', 'PHP (Hacklang)']
+			),
+			new Commit('1ccab09', 'Horizon by Facebook VR is now Meta Horizon', new Date(2021, 11),
+				[],
+				[{original: 'C#', modified: 'C#'}, {original: 'ReactVR', modified: 'ReactVR'}, {original: 'Relay', modified: 'Relay'}, {original: 'Unity', modified: 'Unity'}, {original: 'GraphQL', modified: 'GraphQL'}, {original: 'PHP (Hacklang)', modified: 'PHP (Hacklang)'}]
+			)
 		],
 	}),
 	computed: {
