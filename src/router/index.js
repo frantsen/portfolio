@@ -1,9 +1,9 @@
 import Vue from '@vue/compat';
 import Router from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
-import Home from '../components/Home';
-import Error404 from '../components/screens/Error404';
-import ThreeRemix from '../components/ThreeRemix';
+import Home from '../components/Home.vue';
+import Error404 from '../components/screens/Error404.vue';
+import ThreeRemix from '../components/ThreeRemix.vue';
 
 Vue.use(Router);
 Vue.use(VueScrollTo);

@@ -4,7 +4,7 @@
 
 <script>
 import * as Three from 'three';
-import PerspectiveViewport from './PerspectiveViewport';
+import PerspectiveViewport from './PerspectiveViewport.vue';
 
 export default {
 	name: 'wave-scene',

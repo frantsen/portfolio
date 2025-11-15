@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import NavMenu from './Navigation';
-import Cover from './screens/Cover';
-import Intro from './screens/Intro';
-import Skills from './screens/Skills';
-import Connect from './screens/Connect';
+import NavMenu from './Navigation.vue';
+import Cover from './screens/Cover.vue';
+import Intro from './screens/Intro.vue';
+import Skills from './screens/Skills.vue';
+import Connect from './screens/Connect.vue';
 
 export default {
 	name: 'home',

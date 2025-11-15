@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import WaveScene from '../WaveScene';
+import WaveScene from '../WaveScene.vue';
 
 export default {
 	name: 'cover',
