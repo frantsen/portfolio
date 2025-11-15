@@ -1,5 +1,5 @@
 import * as Three from 'three';
-import Vue from 'vue';
+import Vue from '@vue/compat';
 import Vuex from 'vuex';
 
 Vue.use( Vuex );
