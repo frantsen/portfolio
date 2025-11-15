@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .intro {
 	height: 100%;
 	width: 100%;
@@ -48,34 +48,34 @@ export default {
 	justify-content: center;
 	min-height: 310px;
 	flex-direction: row-reverse;
+}
 
-	.img-wrapper {
-		width: 50%;
-		height: 100%;
-		flex: 1;
+.stripe .img-wrapper {
+	width: 50%;
+	height: 100%;
+	flex: 1;
+}
 
-		img {
-			height: 100%;
-			display: inline-block;
-		}
-	}
+.stripe .img-wrapper img {
+	height: 100%;
+	display: inline-block;
 }
 
 .stripe-intro {
 	flex: 1;
 	width: 50%;
+}
 
-	main {
-		color: #fff;
-		text-align: left;
-		font-size: 16pt;
-		direction: initial;
+.stripe-intro main {
+	color: #fff;
+	text-align: left;
+	font-size: 16pt;
+	direction: initial;
+}
 
-		p {
-			max-width: 300px;
-			margin: 10px 25px 15px 15px;
-		}
-	}
+.stripe-intro main p {
+	max-width: 300px;
+	margin: 10px 25px 15px 15px;
 }
 
 @media (max-width: 559px) {

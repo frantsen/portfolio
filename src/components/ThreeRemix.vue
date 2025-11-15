@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .three-remix {
 	position: relative;
 	height: 100vh;
@@ -51,14 +51,14 @@ export default {
 	letter-spacing: .2vmax;
 	position: absolute;
 	padding: 10px 0 0 10px;
+}
 
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
+.overlay-text a {
+	text-decoration: none;
+	color: inherit;
+}
 
-	.overlay-subtext {
-		font-size: 2vmax;
-	}
+.overlay-text .overlay-subtext {
+	font-size: 2vmax;
 }
 </style>

@@ -164,7 +164,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .skills {
 	width: 100%;
 	height: 100%;
@@ -186,11 +186,11 @@ export default {
 	display: inline-flex;
 	flex: 1;
 	text-align: right;
+}
 
-	&:hover {
-		cursor: crosshair;
-		color: blue;
-	}
+.hash-link:hover {
+	cursor: crosshair;
+	color: blue;
 }
 
 .commit-list {
@@ -210,10 +210,8 @@ export default {
 	display: flex;
 }
 
-.nochange {
-	.message {
-		color: gray;
-	}
+.nochange .message {
+	color: gray;
 }
 
 .addition {

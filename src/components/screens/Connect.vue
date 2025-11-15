@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .connect {
 	display: flex;
 	flex-direction: column;
@@ -73,28 +73,28 @@ a {
 	padding: 2vh;
 	transition-duration: 300ms;
 	opacity: 0.7;
+}
 
-	&:hover {
-		opacity: 1.0;
-	}
+a:hover {
+	opacity: 1.0;
+}
 
-	.social-link {
-		display: table-row;
-		width: 100%;
+a .social-link {
+	display: table-row;
+	width: 100%;
+}
 
-		img {
-			width: 5vmax;
-			max-width: 55px;
-			display: table-cell;
-		}
-	}
+a .social-link img {
+	width: 5vmax;
+	max-width: 55px;
+	display: table-cell;
+}
 
-	.social-description {
-		display: table-cell;
-		vertical-align: middle;
-		padding-left: 20px;
-		width: 100%;
-	}
+a .social-description {
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 20px;
+	width: 100%;
 }
 
 @media (max-width: 500px) and (orientation: portrait) {
