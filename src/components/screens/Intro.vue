@@ -11,7 +11,10 @@
 						and passionate about becoming a better communicator in all three.
 					</p>
 					<p>
-						bringing interdisciplinary perspectives and creativity to code since Hello world in 2015
+						bringing interdisciplinary perspectives and creativity to code since Hello world in 2015.
+					</p>
+					<p>
+						this responsive site built <b>from scratch</b> & configured by hand. see <a href="https://github.com/frantsen/portfolio">here</a> for behind-the-scenes.
 					</p>
 				</main>
 			</div>
@@ -32,6 +35,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+	color: #B8DCFE;
+	display: inline-flex;
+	flex: 1;
+	text-align: right;
+	text-decoration: none;
+	&:hover {
+		cursor: crosshair;
+		color: lightskyblue;
+	}
+}
+
 .intro {
 	height: 100%;
 	width: 100%;
