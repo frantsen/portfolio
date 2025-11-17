@@ -1,6 +1,6 @@
 <template>
 	<div class="navigation">
-		<div class="title mobile-hide">Rachel Frantsen Lee | {{active | title}}
+		<div class="title mobile-hide">Rachel Frantsen Lee | {{title(active)}}
 		</div>
 		<div class="nav-wrapper mobile-hide">
 			<div v-for="(item, index) in items"
@@ -8,11 +8,11 @@
 				class="nav-item"
 				:class="{active: item === active}"
 				@click="navigateTo(item)">
-				{{item | title}}
+				{{title(item)}}
 			</div>
 		</div>
 		<div class="mobile-label mobile-show">
-			{{active | title}}
+			{{title(active)}}
 		</div>
 	</div>
 </template>
@@ -21,7 +21,7 @@
 export default {
 	name: 'navigation',
 	props: ['active', 'items'],
-	filters: {
+	methods: {
 		title(value) {
 			return {
 				'cover': 'Top',
@@ -32,17 +32,21 @@ export default {
 				'connect': 'Connect',
 			}[value];
 		},
-	},
-	methods: {
-		navigateTo(screenName) {
-			this.$scrollTo(`#screen-${screenName}`, {
-				onDone: () => {
+		scrollToScreen(screenName) {
+			const element = document.getElementById(`screen-${screenName}`);
+			if (element) {
+				element.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
+				// Emit after scroll animation completes (approximate 300ms duration)
+				setTimeout(() => {
 					this.$emit('screenSet', screenName);
-				},
-				duration: 300,
-				easing: 'ease-out',
-				cancelable: true,
-			});
+				}, 300);
+			}
+		},
+		navigateTo(screenName) {
+			this.scrollToScreen(screenName);
 		},
 	},
 };

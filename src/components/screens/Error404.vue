@@ -1,5 +1,5 @@
 <template>
-	<div id="error-404" @click="$router.push({name: 'home'})">
+	<div id="error-404" @click="goHome">
 		<h1>404</h1>
 		Click screen or tap to go Home.
 	</div>
@@ -8,6 +8,11 @@
 <script>
 export default {
 	name: 'error-404',
+	methods: {
+		goHome() {
+			window.location.hash = '/';
+		},
+	},
 };
 </script>
 

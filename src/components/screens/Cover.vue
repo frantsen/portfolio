@@ -16,17 +16,22 @@ export default {
 		WaveScene,
 	},
 	methods: {
+		scrollToScreen(screenName) {
+			const element = document.getElementById(`screen-${screenName}`);
+			if (element) {
+				element.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
+				// Emit after scroll animation completes (approximate 300ms duration)
+				setTimeout(() => {
+					this.$emit('navigate', screenName);
+				}, 300);
+			}
+		},
 		navigateNext() {
 			const screenName = 'intro';
-			let vm = this;
-			this.$scrollTo(`#screen-${screenName}`, {
-				onDone() {
-					vm.$emit('navigate', screenName);
-				},
-				duration: 300,
-				easing: 'ease-out',
-				cancelable: true,
-			});
+			this.scrollToScreen(screenName);
 		},
 	},
 };

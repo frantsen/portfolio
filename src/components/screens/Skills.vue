@@ -7,7 +7,7 @@
 						<div @click="selectCommit(index)" class="hash-link">
 							{{commit.hashLabel}}
 						</div>
-						<div class="align-right">{{commit.date | timeSinceDate}}</div>
+						<div class="align-right">{{timeSinceDate(commit.date)}}</div>
 					</div>
 				</div>
 			</div>
@@ -128,7 +128,7 @@ export default {
 			return this.snapshots[this.idxSelectedCommit];
 		},
 	},
-	filters: {
+	methods: {
 		timeSinceDate(date) {
 			let seconds = Math.floor((new Date() - date) / 1000);
 			let intervals = [
@@ -145,8 +145,6 @@ export default {
 			let count = Math.floor(seconds / interval.sec);
 			return `${count} ${interval.type}${count > 1 ? 's' : ''} ago`;
 		},
-	},
-	methods: {
 		selectCommit(descIdxSelected) {
 			this.idxSelectedCommit = this.commits.length - 1 - descIdxSelected;
 		},

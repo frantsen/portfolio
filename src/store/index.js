@@ -1,10 +1,7 @@
 import * as Three from 'three';
-import Vue from '@vue/compat';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 
-Vue.use( Vuex );
-
-export default new Vuex.Store({
+export default createStore({
 	state: {
 		scene: new Three.Scene(),
 		bounds: {

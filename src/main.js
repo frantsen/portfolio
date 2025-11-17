@@ -1,24 +1,16 @@
-import Vue from '@vue/compat';
-import Vuex from 'vuex';
+import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router';
 import store from './store';
 import GoogleAnalytics from './scripts/google_analytics';
 
-Vue.use(Vuex)
+const app = createApp(App);
 
-Vue.config.productionTip = false;
+// Use Vuex store (Vuex 4)
+app.use(store);
 
-router.afterEach((to, from) => {
-	ga('set', 'page', to.fullPath);
-	ga('send', 'pageview');
-});
+// Add navigation helper to global properties
+app.config.globalProperties.$navigateTo = function(route) {
+	window.location.hash = route;
+};
 
-/* eslint-disable no-new */
-new Vue({
-	el: '#app',
-	store,
-	router,
-	template: '<App/>',
-	components: { App }
-});
+app.mount('#app');
